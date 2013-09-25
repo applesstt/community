@@ -2,4 +2,12 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form(method = 'post')
+    div
+      label 用户名
+        input(name = 'name')
+    div
+      label 密码
+        input(type = 'password', name = 'password')
+    div
+      button(type = 'submit') 登录
