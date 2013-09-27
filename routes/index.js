@@ -9,7 +9,9 @@ var crypto = require('crypto'),
 var index = function(req, res) {
   res.render('index', {
     title: '首页',
-    user: req.session.user
+    user: req.session.user,
+    success: req.flash('success'),
+    error: req.flash('error')
   });
 };
 
@@ -18,7 +20,12 @@ var login = function(req, res) {
 };
 
 var reg = function(req, res) {
-  res.render('reg', {title: '注册'});
+  res.render('reg', {
+    title: '注册',
+    user: req.session.user,
+    success: req.flash('success'),
+    error: req.flash('error')
+  });
 };
 
 var post = function(req, res) {
@@ -48,6 +55,7 @@ var doReg = function(req, res) {
     email: email
   });
   User.get(name, function(err, user) {
+    console.log(user);
     if(user) {
       req.flash('error', '该用户已存在!');
       return res.redirect('/reg');

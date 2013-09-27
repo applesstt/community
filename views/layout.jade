@@ -12,4 +12,8 @@ html
       else
         a(href='/login') 登录
         a(href='/reg') 注册
+    if success
+      = success
+    if error
+      = error
     block content
