@@ -1,10 +1,16 @@
+var crypto = require('crypto'),
+    User = require('../models/user.js');
+
 /**
  * set routers
  */
 
 // get function
 var index = function(req, res) {
-  res.render('index', {title: '首页'});
+  res.render('index', {
+    title: '首页',
+    user: req.session.user
+  });
 };
 
 var login = function(req, res) {
@@ -26,7 +32,36 @@ var doLogin = function(req, res) {
 };
 
 var doReg = function(req, res) {
-
+  var name = req.body.name,
+      password = req.body.password,
+      repeat_password = req.body.repeat_password,
+      email = req.body.email;
+  if(password !== repeat_password) {
+    req.flash('error', '两次输入的密码不一致!');
+    return res.redirect('/reg');
+  }
+  var md5 = crypto.createHash('md5');
+  password = md5.update(password).digest('hex');
+  var newUser = new User({
+    name: name,
+    password: password,
+    email: email
+  });
+  User.get(name, function(err, user) {
+    if(user) {
+      req.flash('error', '该用户已存在!');
+      return res.redirect('/reg');
+    }
+    newUser.save(function(err) {
+      if(err) {
+        req.flash('error', err);
+        return res.redirect('/reg');
+      }
+      req.session.user = newUser;
+      req.flash('success', '注册成功!');
+      res.redirect('/');
+    });
+  })
 };
 
 var doPost = function(req, res) {

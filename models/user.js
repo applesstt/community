@@ -8,7 +8,7 @@ var User = function(user) {
 
 module.exports = User;
 
-User.property.save = function(callback) {
+User.prototype.save = function(callback) {
     var user = {
         name: this.name,
         password: this.password,
@@ -45,7 +45,7 @@ User.get = function(name, callback) {
             }
             collection.findOne({
                 name: name
-            }, function(err, callback) {
+            }, function(err, user) {
                 mongodb.close();
                 if(user) {
                     return callback(null, user);
