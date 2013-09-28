@@ -33,6 +33,13 @@ var reg = function(req, res) {
   });
 };
 
+
+var logout = function(req, res) {
+  req.session.user = null;
+  req.flash('success', '成功退出!');
+  res.redirect('/');
+};
+
 var post = function(req, res) {
   res.render('post', {title: '发布'});
 };
@@ -98,18 +105,14 @@ var doPost = function(req, res) {
 
 };
 
-var doLogout = function(req, res) {
-
-};
-
 module.exports = function(app) {
   app.get('/', index);
   app.get('/login', login);
   app.get('/reg', reg);
   app.get('/post', post);
+  app.get('/logout', logout);
 
   app.post('/login', doLogin);
   app.post('/reg', doReg);
   app.post('/post', doPost);
-  app.post('/logout', doLogout);
 };
