@@ -1,6 +1,22 @@
 var crypto = require('crypto'),
     User = require('../models/user.js');
 
+var checkLogin = function(req, res, next) {
+  if(!req.session.user) {
+    req.flash('error', '请登录!');
+    res.redirect('/login');
+  }
+  next();
+};
+
+var checkNotLogin = function(req, res, next) {
+  if(req.session.user) {
+    req.flash('error', '已登录!');
+    res.redirect('back');
+  }
+  next();
+};
+
 /**
  * set routers
  */
@@ -76,18 +92,25 @@ var doPost = function(req, res) {
 
 };
 
-var doLogout = function(req, res) {
-
-};
-
 module.exports = function(app) {
   app.get('/', index);
-  app.get('/login', login);
-  app.get('/reg', reg);
-  app.get('/post', post);
 
+  app.get('/login', checkNotLogin);
+  app.get('/login', login);
+  app.get('/login', checkNotLogin);
   app.post('/login', doLogin);
+
+
+  app.get('/reg', checkNotLogin);
+  app.get('/reg', reg);
+  app.get('/reg', checkNotLogin);
   app.post('/reg', doReg);
+
+  app.get('/post', checkLogin);
+  app.get('/post', post);
+  app.get('/post', checkLogin);
   app.post('/post', doPost);
-  app.post('/logout', doLogout);
+
+  app.get('/post', checkLogin);
+  app.get('/logout', doLogout);
 };
