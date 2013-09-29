@@ -32,7 +32,12 @@ var index = function(req, res) {
 };
 
 var login = function(req, res) {
-  res.render('login', {title: '登录'});
+  res.render('login', {
+      title: '登录',
+      user: req.session.user,
+      success: req.flash('success'),
+      error: req.flash('error')
+  });
 };
 
 var reg = function(req, res) {
@@ -44,6 +49,13 @@ var reg = function(req, res) {
   });
 };
 
+
+var logout = function(req, res) {
+  req.session.user = null;
+  req.flash('success', '成功退出!');
+  res.redirect('/');
+};
+
 var post = function(req, res) {
   res.render('post', {title: '发布'});
 };
@@ -51,7 +63,24 @@ var post = function(req, res) {
 // post function
 
 var doLogin = function(req, res) {
-
+  var name = req.body.name,
+      password = req.body.password,
+      md5 = crypto.createHash('md5');
+  password = md5.update(password).digest('hex');
+  User.get(name, function(err, user) {
+    if(user) {
+      if(password === user.password) {
+        req.session.user = user;
+        req.flash('success', '登录成功!');
+        return res.redirect('/');
+      } else {
+        req.flash('error', '密码不正确!');
+      }
+    } else {
+      req.flash('error', '用户不存在!');
+    }
+    res.redirect('/login');
+  })
 };
 
 var doReg = function(req, res) {
@@ -112,5 +141,5 @@ module.exports = function(app) {
   app.post('/post', doPost);
 
   app.get('/post', checkLogin);
-  app.get('/logout', doLogout);
+  app.get('/logout', logout);
 };
