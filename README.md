@@ -1,6 +1,11 @@
 community
 =========
 
+### Author
+
+Yachuan Li
+[G+](https://plus.google.com/112077127945816369783)
+
 Node project with express grunt and MongoDB
 
 ###目标
