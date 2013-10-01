@@ -3,3 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  - for(var i = 0; i < posts.length; i++)
+    div
+      div 标题：#{posts[i]['title']}
+      div 作者：#{posts[i]['name']}
+      div 内容：#{posts[i]['post']}
+      div 发布时间: #{posts[i]['time']['minute']}

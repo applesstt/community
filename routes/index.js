@@ -1,5 +1,6 @@
 var crypto = require('crypto'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'),
+    Post = require('../models/post.js');
 
 var checkLogin = function(req, res, next) {
   if(!req.session.user) {
@@ -23,11 +24,17 @@ var checkNotLogin = function(req, res, next) {
 
 // get function
 var index = function(req, res) {
-  res.render('index', {
-    title: '首页',
-    user: req.session.user,
-    success: req.flash('success'),
-    error: req.flash('error')
+  Post.get(null, function(err, posts) {
+    if(err) {
+      posts = [];
+    }
+    res.render('index', {
+      title: '首页',
+      user: req.session.user,
+      success: req.flash('success'),
+      error: req.flash('error'),
+      posts: posts
+    });
   });
 };
 
@@ -57,7 +64,12 @@ var logout = function(req, res) {
 };
 
 var post = function(req, res) {
-  res.render('post', {title: '发布'});
+  res.render('post', {
+    title: '发布',
+    user: req.session.user,
+    success: req.flash('success'),
+    error: req.flash('error')
+  });
 };
 
 // post function
@@ -118,7 +130,20 @@ var doReg = function(req, res) {
 };
 
 var doPost = function(req, res) {
-
+  var user = req.session.user;
+  var post = new Post({
+    name: user.name,
+    title: req.body.title,
+    post: req.body.post
+  });
+  post.save(function(err) {
+    if(err) {
+      req.flash('error', err);
+      return res.redirect('/');
+    }
+    req.flash('success', '发布成功!');
+    res.redirect('/');
+  });
 };
 
 module.exports = function(app) {

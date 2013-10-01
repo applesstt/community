@@ -2,4 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form(method = 'post')
+    div 标题：
+      input(name = 'title')
+    div 正文：
+      textarea(name = 'post', rows = '20', cols = '180')
+    input(type = 'submit') 发布
