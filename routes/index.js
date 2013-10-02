@@ -1,4 +1,5 @@
 var crypto = require('crypto'),
+    fs = require('fs'),
     User = require('../models/user.js'),
     Post = require('../models/post.js');
 
@@ -112,7 +113,6 @@ var doReg = function(req, res) {
     email: email
   });
   User.get(name, function(err, user) {
-    console.log(user);
     if(user) {
       req.flash('error', '该用户已存在!');
       return res.redirect('/reg');
@@ -131,10 +131,24 @@ var doReg = function(req, res) {
 
 var doPost = function(req, res) {
   var user = req.session.user;
+  var image_name = '';
+  for(var i in req.files) {
+    if(req.files[i].size == 0) {
+      req.unlinkSync(req.files[i].path);
+      console.log('delete empty file');
+    } else {
+      image_name = req.files[i].name;
+      var target_path = './public/upload/images/' + image_name;
+      fs.renameSync(req.files[i].path, target_path);
+      console.log('Success upload image file!');
+      break;
+    }
+  }
   var post = new Post({
     name: user.name,
     title: req.body.title,
-    post: req.body.post
+    post: req.body.post,
+    image: image_name
   });
   post.save(function(err) {
     if(err) {

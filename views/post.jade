@@ -2,9 +2,11 @@ extends layout
 
 block content
   h1= title
-  form(method = 'post')
+  form(method = 'post', enctype = 'multipart/form-data')
     div 标题：
       input(name = 'title')
+    div 图片：
+      input(name = 'image', type = 'file')
     div 正文：
       textarea(name = 'post', rows = '20', cols = '180')
     input(type = 'submit') 发布

@@ -4,6 +4,7 @@ var Post = function(post) {
   this.name = post.name;
   this.title = post.title;
   this.post = post.post;
+  this.image = post.image;
 };
 
 module.exports = Post;
@@ -25,6 +26,7 @@ Post.prototype.save = function(callback) {
     name: this.name,
     title: this.title,
     post: this.post,
+    image: this.image,
     time: time
   };
   mongodb.open(function(err, db) {

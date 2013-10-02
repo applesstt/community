@@ -7,5 +7,8 @@ block content
     div
       div 标题：#{posts[i]['title']}
       div 作者：#{posts[i]['name']}
+      - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
+        div 图片：
+          img(src = '/upload/images/#{posts[i]["image"]}')
       div 内容：#{posts[i]['post']}
       div 发布时间: #{posts[i]['time']['minute']}
