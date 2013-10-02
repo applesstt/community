@@ -167,4 +167,10 @@ module.exports = function(app) {
 
   app.get('/post', checkLogin);
   app.get('/logout', logout);
+
+  app.use(function(req, res) {
+    res.render('404', {
+      title: '404'
+    });
+  })
 };
