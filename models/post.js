@@ -46,7 +46,7 @@ Post.prototype.save = function(callback) {
   })
 };
 
-Post.get = function(name, callback) {
+Post.getAll = function(name, callback) {
   mongodb.open(function(err, db) {
     if(err) {
       return callback(err);
