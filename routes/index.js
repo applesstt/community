@@ -152,6 +152,48 @@ var doPost = function(req, res) {
   });
 };
 
+var toUser = function(req, res) {
+  var name = req.params.name;
+  User.get(name, function(err, user) {
+    if(!user) {
+      req.flash('error', '用户不存在!');
+      res.redirect('/');
+    }
+    Post.getAll(User.name, function(err, posts) {
+      if(err) {
+        req.flash('error', err);
+        res.redirect('/');
+      }
+      res.render('/user', {
+        title: user.name,
+        posts: posts,
+        user: req.session.user,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+      });
+    });
+  });
+};
+
+var toPostInfo = function(req, res) {
+  var name = req.params.name;
+  var day = req.params.day;
+  var title = req.params.title;
+  Post.getOne(name, day, title, function(err, post) {
+    if(err) {
+      req.flash('error', err);
+      res.redirect('/');
+    }
+    res.render('article', {
+      title: post.title,
+      post: post,
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+};
+
 module.exports = function(app) {
   app.get('/', index);
 
@@ -170,6 +212,10 @@ module.exports = function(app) {
   app.get('/post', post);
   app.get('/post', checkLogin);
   app.post('/post', doPost);
+
+  app.get('/u/:name', toUser);
+
+  app.get('/u/:name/:day/:title', toPostInfo);
 
   app.get('/logout', logout);
 
