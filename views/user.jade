@@ -7,8 +7,6 @@ block content
     div
       div 标题：
         a(href = '/u/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') #{posts[i]['title']}
-      div 作者：
-        a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
       - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
         div 图片：
           img(src = '/upload/images/#{posts[i]["image"]}')

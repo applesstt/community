@@ -164,7 +164,7 @@ var toUser = function(req, res) {
         req.flash('error', err);
         res.redirect('/');
       }
-      res.render('/user', {
+      res.render('user', {
         title: user.name,
         posts: posts,
         user: req.session.user,

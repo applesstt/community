@@ -46,6 +46,37 @@ Post.prototype.save = function(callback) {
   })
 };
 
+Post.getOne = function(name, day, title, callback) {
+  mongodb.open(function(err, db) {
+    if(err) {
+      return callback(err);
+    }
+    db.collection('posts', function(err, collection) {
+      if(err) {
+        mongodb.close();
+        return callback(err);
+      }
+      var query = {};
+      if(name) {
+        query.name = name;
+      }
+      if(day) {
+        query['time.day'] = day;
+      }
+      if(title) {
+        query['title'] = title;
+      }
+      collection.findOne(query, function(err, post) {
+        mongodb.close();
+        if(err) {
+          return callback(err);
+        }
+        callback(null, post);
+      })
+    })
+  })
+}
+
 Post.getAll = function(name, callback) {
   mongodb.open(function(err, db) {
     if(err) {
