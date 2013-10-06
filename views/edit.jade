@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  form(method = 'post', enctype = 'multipart/form-data')
+    div 标题：
+      input(name = 'title', disabled = 'disabled', value = '#{post["title"]}')
+    - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
+      div 图片：
+        img(src = '/upload/images/#{post["image"]}')
+    div 正文：
+      textarea(name = 'post', rows = '20', cols = '180') #{post.post}
+    input(type = 'submit') 保存修改

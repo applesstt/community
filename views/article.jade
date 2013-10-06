@@ -10,3 +10,6 @@ block content
       img(src = '/upload/images/#{post["image"]}')
   div 内容：#{post['post']}
   div 发布时间: #{post['time']['minute']}
+  - if(user.name == post.name)
+    a(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
+    a(href='/remove/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除

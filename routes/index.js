@@ -157,7 +157,7 @@ var toUser = function(req, res) {
   User.get(name, function(err, user) {
     if(!user) {
       req.flash('error', '用户不存在!');
-      res.redirect('/');
+      return res.redirect('/');
     }
     Post.getAll(User.name, function(err, posts) {
       if(err) {
@@ -182,7 +182,7 @@ var toPostInfo = function(req, res) {
   Post.getOne(name, day, title, function(err, post) {
     if(err) {
       req.flash('error', err);
-      res.redirect('/');
+      return res.redirect('/');
     }
     res.render('article', {
       title: post.title,
@@ -192,6 +192,42 @@ var toPostInfo = function(req, res) {
       error: req.flash('error').toString()
     });
   });
+};
+
+var toEdit = function(req, res) {
+  var name = req.params.name;
+  var day = req.params.day;
+  var title = req.params.title;
+  var currentUser = req.session.user;
+  Post.edit(currentUser.name, day, title, function(err, post) {
+    if(err) {
+      req.flash('error', err);
+      res.redirect('');
+    }
+    res.render('edit', {
+      title: '编辑',
+      post: post,
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+};
+
+var update = function(req, res) {
+  var currentUser = req.session.user;
+  var name = req.params.name;
+  var day = req.params.day;
+  var title = req.params.title;
+  Post.update(currentUser.name, day, title, req.body.post, function(err) {
+    var url = '/u/' + name + '/' + day + '/' + title;
+    if(err) {
+      req.flash('error', err);
+      return res.redirect(url);
+    }
+    req.flash('success', '修改成功!');
+    res.redirect(url);
+  })
 };
 
 module.exports = function(app) {
@@ -216,6 +252,12 @@ module.exports = function(app) {
   app.get('/u/:name', toUser);
 
   app.get('/u/:name/:day/:title', toPostInfo);
+
+  app.get('/edit/:name/:day/:title', checkLogin);
+  app.get('/edit/:name/:day/:title', toEdit);
+
+  app.post('/edit/:name/:day/:title', checkLogin);
+  app.post('/edit/:name/:day/:title', update);
 
   app.get('/logout', logout);
 
