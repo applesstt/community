@@ -14,3 +14,7 @@ block content
           img(src = '/upload/images/#{posts[i]["image"]}')
       div 内容：#{posts[i]['post']}
       div 发布时间: #{posts[i]['time']['minute']}
+  - if(!isFirst)
+    a(href = '?page=#{page - 1}') 上一页
+  - if((isFirst && !isLast) || !isLast)
+    a(href = '?page=#{page + 1}') 下一页

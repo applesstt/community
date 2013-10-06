@@ -23,9 +23,12 @@ var checkNotLogin = function(req, res, next) {
  * set routers
  */
 
+var PageSize = 10;
+
 // get function
 var index = function(req, res) {
-  Post.getAll(null, function(err, posts) {
+  var page = req.query.page ? parseInt(req.query.page) : 1;
+  Post.getAllByPages(null, page, PageSize, function(err, posts, count) {
     if(err) {
       posts = [];
     }
@@ -34,7 +37,10 @@ var index = function(req, res) {
       user: req.session.user,
       success: req.flash('success'),
       error: req.flash('error'),
-      posts: posts
+      posts: posts,
+      page: page,
+      isFirst: page == 1,
+      isLast:page * PageSize >= count
     });
   });
 };
@@ -154,12 +160,13 @@ var doPost = function(req, res) {
 
 var toUser = function(req, res) {
   var name = req.params.name;
+  var page = req.query.page ? parseInt(req.query.page) : 1;
   User.get(name, function(err, user) {
     if(!user) {
       req.flash('error', '用户不存在!');
       return res.redirect('/');
     }
-    Post.getAll(User.name, function(err, posts) {
+    Post.getAllByPages(User.name, page, PageSize, function(err, posts, count) {
       if(err) {
         req.flash('error', err);
         res.redirect('/');
@@ -169,7 +176,10 @@ var toUser = function(req, res) {
         posts: posts,
         user: req.session.user,
         success: req.flash('success').toString(),
-        error: req.flash('error').toString()
+        error: req.flash('error').toString(),
+        page: page,
+        isFirst: page == 1,
+        isLast: page * PageSize >= count
       });
     });
   });
