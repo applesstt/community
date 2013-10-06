@@ -230,6 +230,21 @@ var update = function(req, res) {
   })
 };
 
+var remove = function(req, res) {
+  var currentUser = req.session.user;
+  var name = req.params.name;
+  var day = req.params.day;
+  var title = req.params.title;
+  Post.remove(currentUser.name, day, title, function(err) {
+    if(err) {
+      req.flash('error', err);
+      return res.redirect('back');
+    }
+    req.flash('success', '删除成功!');
+    res.redirect('/');
+  })
+}
+
 module.exports = function(app) {
   app.get('/', index);
 
@@ -258,6 +273,9 @@ module.exports = function(app) {
 
   app.post('/edit/:name/:day/:title', checkLogin);
   app.post('/edit/:name/:day/:title', update);
+
+  app.get('/remove/:name/:day/:title', checkLogin);
+  app.get('/remove/:name/:day/:title', remove);
 
   app.get('/logout', logout);
 

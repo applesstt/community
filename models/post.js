@@ -155,3 +155,28 @@ Post.update = function(name, day, title, post, callback) {
     })
   })
 };
+
+Post.remove = function(name, day, title, callback) {
+  mongodb.open(function(err, db) {
+    if(err) {
+      return callback(err);
+    }
+    db.collection('posts', function(err, collection) {
+      if(err) {
+        mongodb.close();
+        return callback(err);
+      }
+      collection.remove({
+        'name': name,
+        'time.day': day,
+        'title': title
+      }, function(err, result) {
+        mongodb.close();
+        if(err) {
+          return callback(err);
+        }
+        callback(null);
+      });
+    });
+  });
+};
