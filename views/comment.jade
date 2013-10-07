@@ -1,0 +1,23 @@
+- if(typeof post.comments !== 'undefined' && post.comments.length > 0)
+  div
+    - for(var i = 0; i < post.comments.length; i++)
+      p
+        a(href = '#{post.comments[i]["website"]}')= post.comments[i]['name']
+        p= post.comments[i]['content']
+form(method = 'post', enctype = 'multipart/form-data')
+  - if(user)
+    div 姓名：
+      input(name = 'name', value = '#{user.name}')
+    div 邮箱：
+      input(name = 'email', value = '#{user.email}')
+  - else
+    div 姓名：
+      input(name = 'name', placeholder = '请输入姓名')
+    div 邮箱：
+      input(name = 'email', placeholder = '请输入邮箱')
+  div 网址：
+    input(name = 'website', placeholder = 'http://')
+  div
+    textarea(name = 'content')
+  div
+    input(type = 'submit', value = '留言')

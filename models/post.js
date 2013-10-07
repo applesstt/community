@@ -5,6 +5,7 @@ var Post = function(post) {
   this.title = post.title;
   this.post = post.post;
   this.image = post.image;
+  this.comments = []
 };
 
 module.exports = Post;

@@ -1,7 +1,8 @@
 var crypto = require('crypto'),
     fs = require('fs'),
     User = require('../models/user.js'),
-    Post = require('../models/post.js');
+    Post = require('../models/post.js'),
+    Comment = require('../models/comment.js');
 
 var checkLogin = function(req, res, next) {
   if(!req.session.user) {
@@ -194,6 +195,7 @@ var toPostInfo = function(req, res) {
       req.flash('error', err);
       return res.redirect('/');
     }
+    console.log(post);
     res.render('article', {
       title: post.title,
       post: post,
@@ -255,6 +257,36 @@ var remove = function(req, res) {
   })
 }
 
+
+var postComment = function(req, res) {
+  var date = new Date();
+  var time = date.getFullYear() + "-" +
+    (date.getMonth()+1) + "-" +
+    date.getDate() + " " +
+    date.getHours() + ":" +
+    date.getMinutes();
+  var name = req.body.name;
+  var email = req.body.email;
+  var website = req.body.website;
+  var content = req.body.content;
+  var comment = {
+    name: name,
+    email: email,
+    website: website,
+    time: time,
+    content: content
+  }
+  var newComment = new Comment(req.params.name, req.params.day, req.params.title, comment);
+  newComment.save(function(err) {
+    if(err) {
+      req.flash('error', err);
+      return res.redirect('/');
+    }
+    req.flash('success', '留言成功!');
+    res.redirect('back');
+  })
+};
+
 module.exports = function(app) {
   app.get('/', index);
 
@@ -277,6 +309,7 @@ module.exports = function(app) {
   app.get('/u/:name', toUser);
 
   app.get('/u/:name/:day/:title', toPostInfo);
+  app.post('/u/:name/:day/:title', postComment);
 
   app.get('/edit/:name/:day/:title', checkLogin);
   app.get('/edit/:name/:day/:title', toEdit);

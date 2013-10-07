@@ -13,3 +13,4 @@ block content
   - if(user.name == post.name)
     a(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
     a(href='/remove/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
+  include comment
