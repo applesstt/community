@@ -4,21 +4,8 @@ var crypto = require('crypto'),
     Post = require('../models/post.js'),
     Comment = require('../models/comment.js');
 
-var checkLogin = function(req, res, next) {
-  if(!req.session.user) {
-    req.flash('error', '请登录!');
-    res.redirect('/login');
-  }
-  next();
-};
-
-var checkNotLogin = function(req, res, next) {
-  if(req.session.user) {
-    req.flash('error', '已登录!');
-    res.redirect('back');
-  }
-  next();
-};
+var auth = require('../controllers/auth.js'),
+    login = require('../controllers/login.js');
 
 /**
  * set routers
@@ -46,15 +33,6 @@ var index = function(req, res) {
   });
 };
 
-var login = function(req, res) {
-  res.render('login', {
-      title: '登录',
-      user: req.session.user,
-      success: req.flash('success'),
-      error: req.flash('error')
-  });
-};
-
 var reg = function(req, res) {
   res.render('reg', {
     title: '注册',
@@ -64,13 +42,6 @@ var reg = function(req, res) {
   });
 };
 
-
-var logout = function(req, res) {
-  req.session.user = null;
-  req.flash('success', '成功退出!');
-  res.redirect('/');
-};
-
 var post = function(req, res) {
   res.render('post', {
     title: '发布',
@@ -78,29 +49,6 @@ var post = function(req, res) {
     success: req.flash('success'),
     error: req.flash('error')
   });
-};
-
-// post function
-
-var doLogin = function(req, res) {
-  var name = req.body.name,
-      password = req.body.password,
-      md5 = crypto.createHash('md5');
-  password = md5.update(password).digest('hex');
-  User.get(name, function(err, user) {
-    if(user) {
-      if(password === user.password) {
-        req.session.user = user;
-        req.flash('success', '登录成功!');
-        return res.redirect('/');
-      } else {
-        req.flash('error', '密码不正确!');
-      }
-    } else {
-      req.flash('error', '用户不存在!');
-    }
-    res.redirect('/login');
-  })
 };
 
 var doReg = function(req, res) {
@@ -290,20 +238,20 @@ var postComment = function(req, res) {
 module.exports = function(app) {
   app.get('/', index);
 
-  app.get('/login', checkNotLogin);
-  app.get('/login', login);
-  app.get('/login', checkNotLogin);
-  app.post('/login', doLogin);
+  app.get('/login', auth.checkNotLogin);
+  app.get('/login', login.toLogin);
+  app.get('/login', auth.checkNotLogin);
+  app.post('/login', login.doLogin);
 
 
-  app.get('/reg', checkNotLogin);
+  app.get('/reg', auth.checkNotLogin);
   app.get('/reg', reg);
-  app.get('/reg', checkNotLogin);
+  app.get('/reg', auth.checkNotLogin);
   app.post('/reg', doReg);
 
-  app.get('/post', checkLogin);
+  app.get('/post', auth.checkLogin);
   app.get('/post', post);
-  app.get('/post', checkLogin);
+  app.get('/post', auth.checkLogin);
   app.post('/post', doPost);
 
   app.get('/u/:name', toUser);
@@ -311,16 +259,16 @@ module.exports = function(app) {
   app.get('/u/:name/:day/:title', toPostInfo);
   app.post('/u/:name/:day/:title', postComment);
 
-  app.get('/edit/:name/:day/:title', checkLogin);
+  app.get('/edit/:name/:day/:title', auth.checkLogin);
   app.get('/edit/:name/:day/:title', toEdit);
 
-  app.post('/edit/:name/:day/:title', checkLogin);
+  app.post('/edit/:name/:day/:title', auth.checkLogin);
   app.post('/edit/:name/:day/:title', update);
 
-  app.get('/remove/:name/:day/:title', checkLogin);
+  app.get('/remove/:name/:day/:title', auth.checkLogin);
   app.get('/remove/:name/:day/:title', remove);
 
-  app.get('/logout', logout);
+  app.get('/logout', login.logout);
 
   app.use(function(req, res) {
     res.render('404', {
