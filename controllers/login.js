@@ -1,4 +1,5 @@
-var User = require('../models/user.js');
+var crypto = require('crypto'),
+    User = require('../models/user.js');
 
 exports.toLogin = function(req, res) {
   res.render('login', {
