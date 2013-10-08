@@ -1,47 +1,13 @@
-var crypto = require('crypto'),
-    fs = require('fs'),
-    User = require('../models/user.js'),
-    Post = require('../models/post.js'),
-    Comment = require('../models/comment.js');
-
 var auth = require('../controllers/auth.js'),
     home = require('../controllers/home.js'),
     login = require('../controllers/login.js'),
     regist = require('../controllers/regist.js'),
-    article = require('../controllers/article.js');
+    article = require('../controllers/article.js'),
+    user = require('../controllers/user.js');
 
 /**
  * set routers
  */
-
-var PageSize = 10;
-
-var toUser = function(req, res) {
-  var name = req.params.name;
-  var page = req.query.page ? parseInt(req.query.page) : 1;
-  User.get(name, function(err, user) {
-    if(!user) {
-      req.flash('error', '用户不存在!');
-      return res.redirect('/');
-    }
-    Post.getAllByPages(User.name, page, PageSize, function(err, posts, count) {
-      if(err) {
-        req.flash('error', err);
-        res.redirect('/');
-      }
-      res.render('user', {
-        title: user.name,
-        posts: posts,
-        user: req.session.user,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString(),
-        page: page,
-        isFirst: page == 1,
-        isLast: page * PageSize >= count
-      });
-    });
-  });
-};
 
 module.exports = function(app) {
   app.get('/', home.toHome);
@@ -62,7 +28,7 @@ module.exports = function(app) {
   app.get('/post', auth.checkLogin);
   app.post('/post', article.doPost);
 
-  app.get('/u/:name', toUser);
+  app.get('/u/:name', user.toUser);
 
   app.get('/u/:name/:day/:title', article.toView);
   app.post('/u/:name/:day/:title', article.doComment);

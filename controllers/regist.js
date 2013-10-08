@@ -1,4 +1,5 @@
-var User = require('../models/user.js');
+var crypto = require('crypto'),
+    User = require('../models/user.js');
 
 exports.toReg = function(req, res) {
   res.render('reg', {

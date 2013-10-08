@@ -1,4 +1,5 @@
 var Post = require('../models/post.js'),
+    fs = require('fs'),
     Comment = require('../models/comment.js');
 
 exports.toPost = function(req, res) {
@@ -53,7 +54,6 @@ exports.toView = function(req, res) {
 };
 
 exports.toUpdate = function(req, res) {
-  var name = req.params.name;
   var day = req.params.day;
   var title = req.params.title;
   var currentUser = req.session.user;
