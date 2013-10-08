@@ -1,3 +1,5 @@
+var User = require('../models/user.js');
+
 exports.toLogin = function(req, res) {
   res.render('login', {
     title: '登录',

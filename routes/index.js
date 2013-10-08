@@ -5,7 +5,9 @@ var crypto = require('crypto'),
     Comment = require('../models/comment.js');
 
 var auth = require('../controllers/auth.js'),
-    login = require('../controllers/login.js');
+    home = require('../controllers/home.js'),
+    login = require('../controllers/login.js'),
+    regist = require('../controllers/regist.js');
 
 /**
  * set routers
@@ -13,75 +15,13 @@ var auth = require('../controllers/auth.js'),
 
 var PageSize = 10;
 
-// get function
-var index = function(req, res) {
-  var page = req.query.page ? parseInt(req.query.page) : 1;
-  Post.getAllByPages(null, page, PageSize, function(err, posts, count) {
-    if(err) {
-      posts = [];
-    }
-    res.render('index', {
-      title: '首页',
-      user: req.session.user,
-      success: req.flash('success'),
-      error: req.flash('error'),
-      posts: posts,
-      page: page,
-      isFirst: page == 1,
-      isLast:page * PageSize >= count
-    });
-  });
-};
-
-var reg = function(req, res) {
-  res.render('reg', {
-    title: '注册',
-    user: req.session.user,
-    success: req.flash('success'),
-    error: req.flash('error')
-  });
-};
-
-var post = function(req, res) {
+var toPost = function(req, res) {
   res.render('post', {
     title: '发布',
     user: req.session.user,
     success: req.flash('success'),
     error: req.flash('error')
   });
-};
-
-var doReg = function(req, res) {
-  var name = req.body.name,
-      password = req.body.password,
-      repeat_password = req.body.repeat_password,
-      email = req.body.email;
-  if(password !== repeat_password) {
-    req.flash('error', '两次输入的密码不一致!');
-    return res.redirect('/reg');
-  }
-  var md5 = crypto.createHash('md5');
-  password = md5.update(password).digest('hex');
-  var newUser = new User({
-    name: name,
-    password: password,
-    email: email
-  });
-  User.get(name, function(err, user) {
-    if(user) {
-      req.flash('error', '该用户已存在!');
-      return res.redirect('/reg');
-    }
-    newUser.save(function(err) {
-      if(err) {
-        req.flash('error', err);
-        return res.redirect('/reg');
-      }
-      req.session.user = newUser;
-      req.flash('success', '注册成功!');
-      res.redirect('/');
-    });
-  })
 };
 
 var doPost = function(req, res) {
@@ -236,7 +176,7 @@ var postComment = function(req, res) {
 };
 
 module.exports = function(app) {
-  app.get('/', index);
+  app.get('/', home.toHome);
 
   app.get('/login', auth.checkNotLogin);
   app.get('/login', login.toLogin);
@@ -245,12 +185,12 @@ module.exports = function(app) {
 
 
   app.get('/reg', auth.checkNotLogin);
-  app.get('/reg', reg);
+  app.get('/reg', regist.toReg);
   app.get('/reg', auth.checkNotLogin);
-  app.post('/reg', doReg);
+  app.post('/reg', regist.doReg);
 
   app.get('/post', auth.checkLogin);
-  app.get('/post', post);
+  app.get('/post', toPost);
   app.get('/post', auth.checkLogin);
   app.post('/post', doPost);
 
