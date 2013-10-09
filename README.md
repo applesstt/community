@@ -8,6 +8,14 @@ Yachuan Li
 
 Node project with express grunt and MongoDB
 
+###安装
+
+安装mongodb
+
+npm install
+
+brew install imagemagick
+
 ###目标
 
 使用Node express grunt MongoDB搭建常见的基础程序
