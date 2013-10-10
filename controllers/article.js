@@ -15,7 +15,7 @@ exports.doPost = function(req, res) {
   var user = req.session.user;
   var image_name = req.files.image.name;
   if(image_name !== '') {
-    var target_path = './public/upload/images' + image_name;
+    var target_path = './public/upload/images/' + image_name;
     fs.renameSync(req.files.image.path, target_path);
   }
   var post = new Post({
