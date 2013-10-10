@@ -14,7 +14,7 @@ Node project with express grunt and MongoDB
 
 npm install
 
-brew install imagemagick
+brew install imagemagick （图片处理模块）
 
 ###目标
 
@@ -24,10 +24,8 @@ brew install imagemagick
 
 用户註冊、登录、退出
 
-发布内容
+内容增删改
 
 上传文件、上传图片、图片处理
 
 grunt打包发布
-
-
