@@ -16,6 +16,8 @@ npm install
 
 brew install imagemagick （图片处理模块）
 
+Mac sh(https://github.com/masterkain/ImageMagick-sl)
+
 ###目标
 
 使用Node express grunt MongoDB搭建常见的基础程序
