@@ -26,10 +26,10 @@ exports.doPost = function(req, res) {
       width: 200
     }, function(err, stdout, stderr) {
       if(err) {
-        req.flash('error', err);
-        return res.redirect('/');
+        console.log(err);
+      } else {
+        console.log('Resize ' + target_path + ' to 200px width image!');
       }
-      console.log('Resize ' + target_path + ' to 200px width image!');
     })
   }
   var post = new Post({
