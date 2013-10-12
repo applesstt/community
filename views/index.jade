@@ -11,7 +11,7 @@ block content
         a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
       - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
         div 图片：
-          img(src = '/upload/images/#{posts[i]["image"]}')
+          img(src = '/upload/images/200_#{posts[i]["image"]}')
       div 内容：#{posts[i]['post']}
       div 发布时间: #{posts[i]['time']['minute']}
   - if(!isFirst)
