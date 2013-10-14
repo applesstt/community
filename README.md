@@ -36,9 +36,9 @@ Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
 ####第二个迭代 2013-10-14 至 2013-11-01 约18天
 
-发邮件 Nodemailer(http://toozhao.com/2011/10/26/201110node-js-send-e-mail/) (3) 
+发邮件 Nodemailer(http://toozhao.com/2011/10/26/201110node-js-send-e-mail/) (3) - （已完成）
 
-引入bootstrap （1）
+引入bootstrap （1） - （已完成）
 
 js css 压缩、合并 （3）
 
