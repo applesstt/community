@@ -3,6 +3,7 @@ var auth = require('../controllers/auth.js'),
     login = require('../controllers/login.js'),
     regist = require('../controllers/regist.js'),
     article = require('../controllers/article.js'),
+    mail = require('../controllers/mail.js'),
     user = require('../controllers/user.js');
 
 /**
@@ -41,6 +42,12 @@ module.exports = function(app) {
 
   app.get('/remove/:name/:day/:title', auth.checkLogin);
   app.get('/remove/:name/:day/:title', article.remove);
+
+  app.get('/mail', auth.checkLogin);
+  app.get('/mail', mail.toMail);
+
+  app.post('/mail', auth.checkLogin);
+  app.post('/mail', mail.doMail);
 
   app.get('/logout', login.logout);
 
