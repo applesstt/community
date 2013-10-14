@@ -34,7 +34,7 @@ Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
 上传文件、上传图片、图片处理 - （已完成）
 
-####第二个迭代 2013-10-14 至 2013-10-29 约15天
+####第二个迭代 2013-10-14 至 2013-11-01 约18天
 
 发邮件 Nodemailer (3)
 
