@@ -36,6 +36,8 @@ Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
 ####第二个迭代 2013-10-14 至 2013-10-29 约15天
 
+发邮件 Nodemailer (3)
+
 引入bootstrap （1）
 
 js css 压缩、合并 （3）
