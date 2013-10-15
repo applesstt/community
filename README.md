@@ -40,15 +40,15 @@ Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
 引入bootstrap （1） - （已完成）
 
-js css 压缩、合并 （3）
-
-js css 文件名增加md5编码 （2）
-
-引入grunt （3）
-
 weibo、qq、人人等第三方平台登录 （weibo - 2， qq - 2， 人人 - 2）
 
-支付宝或银联在线支付 - 可以稍后考虑
+js css 压缩、合并 （3）- 延后
+
+js css 文件名增加md5编码 （2）- 延后
+
+引入grunt （3）- 延后
+
+支付宝或银联在线支付 - 延后
  
 域名购买 备案 （？）
 
