@@ -40,6 +40,10 @@ Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
 引入bootstrap （1） - （已完成）
 
+豆瓣小组命名及建立 （准备100个马甲）
+
+百度贴吧命名及建立 （自备10个马甲）
+
 weibo、qq、人人等第三方平台登录 （weibo - 2， qq - 2， 人人 - 2）
 
 js css 压缩、合并 （3）- 延后
