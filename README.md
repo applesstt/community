@@ -1,5 +1,4 @@
 #community
-=========
 
 ## Author
 
