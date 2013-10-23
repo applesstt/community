@@ -26,3 +26,29 @@
     margin-bottom: 0;
   }
 }
+
+#content {
+  padding-top: 70px;
+}
+
+.question-title {
+  padding-bottom: 40px;
+}
+
+.answer-line {
+  padding: 10px 0;
+}
+
+.answer-info {
+  padding-top: 40px;
+}
+
+.ask-pre-next {
+  padding-top: 40px;
+}
+
+.ask-pre-next .glyphicon {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 50px;
+}
