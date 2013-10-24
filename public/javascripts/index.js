@@ -1,4 +1,4 @@
-$(function() {
+$(window).load(function() {
   var engine = new RainyDay({
     element: 'background',
     blur: 10,
