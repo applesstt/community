@@ -1,3 +1,47 @@
+body {
+  background: #2c4762 url('../images/common/background.png') top repeat-x;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #2c4762;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #080808;
+}
+
+.navbar-inverse {
+  background-color: #2c4762;
+  border-color: #666666;
+}
+.navbar-inverse .logo {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: cursive;
+  color: #ffffff;
+}
+.list-item {
+  background-color: #2c4762;
+}
+.list-item-content {
+  background-color: #ffffff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.list-item-nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+a, a:focus,
+a:hover, a:active {
+  color: #999999;
+  text-decoration: none;
+}
 .cm-footer {
   padding-top: 40px;
   padding-bottom: 30px;

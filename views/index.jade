@@ -1,19 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
   - for(var i = 0; i < posts.length; i++)
-    div
-      div 标题：
-        a(href = '/u/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') #{posts[i]['title']}
-      div 作者：
-        a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
-      - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
-        div 图片：
-          img(src = '/upload/images/200_#{posts[i]["image"]}')
-      div 内容：#{posts[i]['post']}
-      div 发布时间: #{posts[i]['time']['minute']}
+    .row.list-item
+      .col-lg-8.list-item-content
+        h1
+          a(href = '/u/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') #{posts[i]['title']}
+        - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
+          p
+            img(src = '/upload/images/#{posts[i]["image"]}', width = '100%')
+        p #{posts[i]['post']}
+      .col-lg-4.list-item-nav
+        h3.row
+          label.col-lg-4.control-label.text-right 作者：
+          .col-lg-8
+            a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
+        h3.row
+          label.col-lg-4.control-label.text-right 发表于：
+          .col-lg-8 #{posts[i]['time']['day']}
+
   - if(!isFirst)
     a(href = '?page=#{page - 1}') 上一页
   - if((isFirst && !isLast) || !isLast)
