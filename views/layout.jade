@@ -1,19 +1,72 @@
 doctype 5
 html
   head
+    meta(charset = 'utf-8')
+    meta(name = 'viewport', content = 'width=device-width, initial-scale=1.0')
     title= title
     link(rel='stylesheet', media='screen', href='/vendor/bootstrap-3.0.0/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/common.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='/vendor/bootstrap-3.0.0/js/bootstrap.js')
   body
-    nav
-      a(href='/') 首页
-      if user
-        a(href='/post') 发布
-        a(href='/logout') 退出
-      else
-        a(href='/login') 登录
-        a(href='/reg') 注册
+    a.sr-only(href='#content') Skip navigation
+    header.navbar.navbar-inverse.navbar-fixed-top(role='banner')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.bs-nav-bar-collapse')
+            span.sr-only Toggle Navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Logo
+        nav.collapse.navbar-collapse(role='navigation')
+          ul.nav.navbar-nav
+            li.active
+              a(href='/') 首页
+            li
+              a(href='/') 专题
+            li.dropdown
+              a.dropdown-toggle(href='/', data-toggle='dropdown') Dropdown
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='/') Action
+                li
+                  a(href='/') Another action
+                li.divider
+                li.dropdown-header Nav header
+                li
+                  a(href='/') Separated link
+          ul.nav.navbar-nav.navbar-right
+            if user
+              li
+                a(href='/') #{user.name}
+              li
+                a(href='/post') 发布
+              li
+                a(href='/logout') 退出
+            else
+              li
+                a(href='/login') 登录
+              li
+                a(href='/reg') 注册
     if success
       = success
     if error
       = error
-    block content
+
+    #content
+      .container
+        block content
+
+    footer.cm-footer(role='contentinfo')
+      .container
+        p Designed and built with all the love in the world by
+          a(href='twitter.com') @applesstt
+        p Code licensed under
+        ul.footer-links
+          li
+            a(href='/') Bootstrap 2.3.2 docs
+          li.muted .
+          li
+            a(href='/') Blog
