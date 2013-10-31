@@ -5,44 +5,34 @@ html
     meta(name = 'viewport', content = 'width=device-width, initial-scale=1.0')
     title= title
     link(rel='stylesheet', media='screen', href='/vendor/bootstrap-3.0.0/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/business-casual.css')
     link(rel='stylesheet', href='/stylesheets/common.css')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
     script(src='/vendor/bootstrap-3.0.0/js/bootstrap.js')
   body
-    a.sr-only(href='#content') Skip navigation
-    header.navbar.navbar-inverse.navbar-fixed-top(role='banner')
+    .brand Business Casual
+    .address-bar The Plaza | 5483 Start Bootstrap Ave. | Beverly Hills, California 26892 | 555.519.2013
+    nav.navbar.navbar-default(role='navigation')
       .container
         .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.bs-nav-bar-collapse')
-            span.sr-only Toggle Navigation
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand.logo(href='/') Dililili
-        nav.collapse.navbar-collapse(role='navigation')
+          a.navbar-brand(href='/') Business Casual
+
+        .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav
-            li.active
+            li
               a(href='/') 首页
             li
               a(href='/') 专题
-            li.dropdown
-              a.dropdown-toggle(href='/', data-toggle='dropdown') Dropdown
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='/') Action
-                li
-                  a(href='/') Another action
-                li.divider
-                li.dropdown-header Nav header
-                li
-                  a(href='/') Separated link
-          ul.nav.navbar-nav.navbar-right
             if user
               li
-                a(href='/') #{user.name}
-              li
                 a(href='/post') 发布
+              li
+                a(href='/u/#{user.name}') #{user.name}
               li
                 a(href='/logout') 退出
             else
@@ -50,23 +40,17 @@ html
                 a(href='/login') 登录
               li
                 a(href='/reg') 注册
+
     if success
       = success
     if error
       = error
 
-    #content
-      .container
-        block content
+    .container
+      block content
 
-    footer.cm-footer(role='contentinfo')
+    footer
       .container
-        p Designed and built with all the love in the world by
-          a(href='twitter.com') @applesstt
-        p Code licensed under
-        ul.footer-links
-          li
-            a(href='/') Bootstrap 2.3.2 docs
-          li.muted .
-          li
-            a(href='/') Blog
+        .row
+          .col-lg-12.text-center
+            p Copyright &copy; Company 2013

@@ -1,25 +1,55 @@
 extends layout
 
 block content
-  - for(var i = 0; i < posts.length; i++)
-    .row.list-item
-      .col-lg-8.list-item-content
+  .row
+    .box
+      .col-lg-12.text-center
+        #carousel-example-generic.carousel.slide
+          ol.carousel-indicators.hidden-xs
+            li.active(data-target='#carousel-example-generic', data-slide-to='0')
+            li(data-target='#carousel-example-generic', data-slide-to='1')
+            li(data-target='#carousel-example-generic', data-slide-to='2')
+          .carousel-inner
+            .item.active
+              img.img-responsive.img-full(src='images/slide-1.jpg')
+            .item
+              img.img-responsive.img-full(src='images/slide-2.jpg')
+            .item
+              img.img-responsive.img-full(src='images/slide-3.jpg')
+          a.left.carousel-control(href='#carousel-example-generic', data-slide='prev')
+            span.icon-prev
+          a.right.carousel-control(href='#carousel-example-generic', data-slide='next')
+            span.icon-next
         h1
-          a(href = '/u/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') #{posts[i]['title']}
-        - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
-          p
-            img(src = '/upload/images/#{posts[i]["image"]}', width = '100%')
-        p #{posts[i]['post']}
-      .col-lg-4.list-item-nav
-        dl.dl-horizontal
-          dt 作者：
-          dd
-            a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
-        dl.dl-horizontal
-          dt 发表于：
-          dd #{posts[i]['time']['day']}
+          small Welcome to
+          br
+          span.brand-name Business Casual
+          hr.tagline-divider
+          small By
+            strong Start Bootstrap
 
-  - if(!isFirst)
-    a(href = '?page=#{page - 1}') 上一页
-  - if((isFirst && !isLast) || !isLast)
-    a(href = '?page=#{page + 1}') 下一页
+
+  .row
+    .box
+      - for(var i = 0; i < posts.length; i++)
+        .col-lg-12
+          hr
+          h2.text-center #{posts[i]['title']}
+          h3.text-center
+            a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
+            small #{posts[i]['time']['day']}
+          - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
+            hr
+            img.img-responsive.img-border.img-left(src='/upload/images/200_#{posts[i]["image"]}')
+          hr.visible-xs
+          p #{posts[i]['post']}
+      .col-lg-12.text-center
+        ul.pager
+          - if(!isFirst)
+            li.previous
+              a(href = '?page=#{page - 1}') ← 上一页
+          - if((isFirst && !isLast) || !isLast)
+            li.next
+              a(href = '?page=#{page + 1}') 下一页 →
+
+  script(src='javascripts/index.js')
