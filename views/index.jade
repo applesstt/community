@@ -11,13 +11,13 @@ block content
             img(src = '/upload/images/#{posts[i]["image"]}', width = '100%')
         p #{posts[i]['post']}
       .col-lg-4.list-item-nav
-        h3.row
-          label.col-lg-4.control-label.text-right 作者：
-          .col-lg-8
+        dl.dl-horizontal
+          dt 作者：
+          dd
             a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
-        h3.row
-          label.col-lg-4.control-label.text-right 发表于：
-          .col-lg-8 #{posts[i]['time']['day']}
+        dl.dl-horizontal
+          dt 发表于：
+          dd #{posts[i]['time']['day']}
 
   - if(!isFirst)
     a(href = '?page=#{page - 1}') 上一页
