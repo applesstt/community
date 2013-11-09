@@ -16,7 +16,6 @@ block content
           li.command(data-wysihtml5-command = 'insertUnorderedList', title = 'Insert an unordered list')
           li.command(data-wysihtml5-command = 'insertOrderedList', title = 'Insert an ordered list')
           li.command(data-wysihtml5-command = 'createLink', title = 'Insert a link')
-          li.command(data-wysihtml5-command = 'insertImage', title = 'Insert an image')
           li.command(data-wysihtml5-command = 'formatBlock', data-wysihtml5-command-value = 'h1', title = 'Insert headline 1')
           li.command(data-wysihtml5-command = 'formatBlock', data-wysihtml5-command-value = 'h2', title = 'Insert headline 2')
           li.fore-color(data-wysihtml5-command-group = 'foreColor', title = 'Color the selected text')
@@ -45,7 +44,10 @@ block content
     section
      textarea(id = 'wysihtml5-editor', name = 'post', spellcheck = 'false', wrap = 'off', placeholder = 'Enter something ...')
     input(type = 'submit') 发布
+
+block resource
   link(rel = 'stylesheet', href = 'vendor/wysihtml5/css/stylesheet.css')
   script(src = 'vendor/wysihtml5/parser_rules/advanced.js')
   script(src = 'vendor/wysihtml5/dist/wysihtml5-0.3.0.js')
+  script(src = 'vendor/ajaxForm/jquery.form.js')
   script(src = 'javascripts/post.js')
