@@ -17,6 +17,8 @@ Yachuan Li
 
 * Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
+* wysihtml5 insert image: editorInstance.composer.commands.exec("insertImage", { src: "http://url.com/foo.jpg", alt: "this is an image" });
+
 ##第一阶段
 
 * 使用Node express grunt MongoDB搭建常见的基础程序
