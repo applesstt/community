@@ -26,8 +26,10 @@ module.exports = function(app) {
 
   app.get('/post', auth.checkLogin);
   app.get('/post', article.toPost);
-  app.get('/post', auth.checkLogin);
+  app.post('/post', auth.checkLogin);
   app.post('/post', article.doPost);
+  app.post('/uploadImage', auth.checkLogin);
+  app.post('/uploadImage', article.doUploadImage);
 
   app.get('/u/:name', user.toUser);
 

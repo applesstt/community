@@ -144,3 +144,26 @@ exports.doComment = function(req, res) {
     res.redirect('back');
   })
 };
+
+exports.doUploadImage = function(req, res) {
+  var image_name = req.files['upload-image'].name;
+  if(image_name !== '') {
+    image_name = (new Date()).getTime() + '_' + image_name;
+    var target_path = './public/upload/images/' + image_name;
+    var target_path_200 = './public/upload/images/' + '200_' + image_name;
+    fs.renameSync(req.files['upload-image'].path, target_path);
+    var imParams = {
+      srcPath: target_path,
+      dstPath: target_path_200,
+      width: 200
+    };
+    im.resize(imParams, function(err, stdout, stderr) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log('Resize ' + target_path + ' to 200px width image!');
+      }
+    });
+    res.send(imParams);
+  }
+};

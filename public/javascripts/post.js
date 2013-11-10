@@ -11,3 +11,14 @@ editor.on("load", function() {
     composer.selection.selectNode(h1);
   }
 });
+
+$('#upload-image').change(function() {
+  $('#upload-image-form').ajaxSubmit({
+    url: '/uploadImage',
+    type: 'POST',
+    dataType: 'json',
+    success: function(result) {
+      console.log(result);
+    }
+  });
+})
