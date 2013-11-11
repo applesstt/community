@@ -2,8 +2,7 @@ extends layout
 
 block content
   h1= title
-  //form(method = 'post', enctype = 'multipart/form-data')
-  div
+  form#post-form(method = 'post', enctype = 'multipart/form-data')
     div 标题：
       input(name = 'title')
     div 图片：
@@ -39,15 +38,14 @@ block content
         a(data-wysihtml5-dialog-action = 'save') OK
         a(data-wysihtml5-dialog-action = 'cancel') Cancel
       div(data-wysihtml5-dialog = 'insertImage', style = 'display: none;')
-        form#upload-image-form(method='post', enctype = 'multipart/form-data')
-          input#upload-image(name='upload-image', type='file', value='上传图片')
+        input#upload-image(name='upload-image', type='file', value='上传图片')
         lavel Image:
-          input(data-wysihtml5-dialog-field = 'src', value = 'http://')
+          input#image_path(data-wysihtml5-dialog-field = 'src', value = 'http://')
         a(data-wysihtml5-dialog-action = 'save') OK
         a(data-wysihtml5-dialog-action = 'cancel') Cancel
     section
      textarea(id = 'wysihtml5-editor', name = 'post', spellcheck = 'false', wrap = 'off', placeholder = 'Enter something ...')
-    input(type = 'submit') 发布
+    input#post-submit(type = 'submit') 发布
 
 block resource
   link(rel = 'stylesheet', href = 'vendor/wysihtml5/css/stylesheet.css')

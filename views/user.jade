@@ -10,7 +10,7 @@ block content
       - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
         div 图片：
           img(src = '/upload/images/200_#{posts[i]["image"]}')
-      div 内容：#{posts[i]['post']}
+      div 内容：!{posts[i]['post']}
       div 发布时间: #{posts[i]['time']['minute']}
   - if(!isFirst)
     a(href = '?page=#{page - 1}') 上一页

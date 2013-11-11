@@ -13,12 +13,15 @@ editor.on("load", function() {
 });
 
 $('#upload-image').change(function() {
-  $('#upload-image-form').ajaxSubmit({
+  $('#post-form').ajaxSubmit({
     url: '/uploadImage',
     type: 'POST',
     dataType: 'json',
     success: function(result) {
-      console.log(result);
+      if(result) {
+        var imagePath200 = 'http://' + location.host + '/' + result.base_path + '200_' + result.image;
+        $('#image_path').val(imagePath200);
+      }
     }
   });
-})
+});
