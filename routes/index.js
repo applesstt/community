@@ -1,57 +1,62 @@
 var auth = require('../controllers/auth.js'),
-    home = require('../controllers/home.js'),
-    login = require('../controllers/login.js'),
-    regist = require('../controllers/regist.js'),
-    article = require('../controllers/article.js'),
-    mail = require('../controllers/mail.js'),
-    user = require('../controllers/user.js');
+  home = require('../controllers/home.js'),
+  login = require('../controllers/login.js'),
+  regist = require('../controllers/regist.js'),
+  article = require('../controllers/article.js'),
+  mail = require('../controllers/mail.js'),
+  user = require('../controllers/user.js');
 
-/**
- * set routers
- */
+var SetRouter = (function() {
+  var _app;
+
+  var set = function(url, fun, type, isLogin, isNotLogin) {
+    isNotLogin = typeof isNotLogin === 'undefined' ? false : !!isNotLogin;
+    isLogin = typeof isLogin === 'undefined' ? false : !!isLogin;
+    type = typeof type === 'undefined' ? 'get' : type;
+    if(isNotLogin) {
+      _app[type](url, auth.checkNotLogin);
+    } else if(isLogin) {
+      _app[type](url, auth.checkLogin);
+    }
+    _app[type](url, fun);
+  };
+
+  var init = function(app) {
+    _app = app;
+  };
+  return {
+    init: init,
+    set: set
+  }
+}).call(this);
 
 module.exports = function(app) {
-  app.get('/', home.toHome);
+  SetRouter.init(app);
+  SetRouter.set('/', home.toHome, 'get');
 
-  app.get('/login', auth.checkNotLogin);
-  app.get('/login', login.toLogin);
-  app.get('/login', auth.checkNotLogin);
-  app.post('/login', login.doLogin);
+  SetRouter.set('/login', login.toLogin, 'get', false, true);
+  SetRouter.set('/login', login.doLogin, 'post', false, true);
 
+  SetRouter.set('/reg', regist.toReg, 'get', false, true);
+  SetRouter.set('/reg', regist.doReg, 'post', false, true);
 
-  app.get('/reg', auth.checkNotLogin);
-  app.get('/reg', regist.toReg);
-  app.get('/reg', auth.checkNotLogin);
-  app.post('/reg', regist.doReg);
+  SetRouter.set('/post', article.toPost, 'get', true);
+  SetRouter.set('/post', article.doPost, 'post', true);
+  SetRouter.set('/uploadImage', article.doUploadImage, 'post', true);
 
-  app.get('/post', auth.checkLogin);
-  app.get('/post', article.toPost);
-  app.post('/post', auth.checkLogin);
-  app.post('/post', article.doPost);
-  app.post('/uploadImage', auth.checkLogin);
-  app.post('/uploadImage', article.doUploadImage);
+  SetRouter.set('/u/:name', user.toUser, 'get');
+  SetRouter.set('/u/:name/:day/:title', article.toView, 'get');
+  SetRouter.set('/u/:name/:day/:title', article.doComment, 'post');
 
-  app.get('/u/:name', user.toUser);
+  SetRouter.set('/edit/:name/:day/:title', article.toUpdate, 'get', true);
+  SetRouter.set('/edit/:name/:day/:title', article.doUpdate, 'post', true);
 
-  app.get('/u/:name/:day/:title', article.toView);
-  app.post('/u/:name/:day/:title', article.doComment);
+  SetRouter.set('/remove/:name/:day/:title', article.remove, 'get', true);
 
-  app.get('/edit/:name/:day/:title', auth.checkLogin);
-  app.get('/edit/:name/:day/:title', article.toUpdate);
+  SetRouter.set('/mail', mail.toMail, 'get', true);
+  SetRouter.set('/mail', mail.doMail, 'post', true);
 
-  app.post('/edit/:name/:day/:title', auth.checkLogin);
-  app.post('/edit/:name/:day/:title', article.doUpdate);
-
-  app.get('/remove/:name/:day/:title', auth.checkLogin);
-  app.get('/remove/:name/:day/:title', article.remove);
-
-  app.get('/mail', auth.checkLogin);
-  app.get('/mail', mail.toMail);
-
-  app.post('/mail', auth.checkLogin);
-  app.post('/mail', mail.doMail);
-
-  app.get('/logout', login.logout);
+  SetRouter.set('/logout', login.logout, 'get', true);
 
   app.use(function(req, res) {
     res.render('404', {

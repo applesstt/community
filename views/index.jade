@@ -42,7 +42,7 @@ block content
             hr
             img.img-responsive.img-border.img-left(src='/upload/images/200_#{posts[i]["image"]}')
           hr.visible-xs
-          p #{posts[i]['post']}
+          p !{posts[i]['post']}
       .col-lg-12.text-center
         ul.pager
           - if(!isFirst)
