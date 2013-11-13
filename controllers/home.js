@@ -19,3 +19,7 @@ exports.toHome = function(req, res) {
     });
   });
 };
+
+exports.toDemo1 = function(req, res) {
+  res.render('demo1');
+};

@@ -32,6 +32,9 @@ var SetRouter = (function() {
 
 module.exports = function(app) {
   SetRouter.init(app);
+
+  SetRouter.set('/demo1', home.toDemo1, 'get');
+
   SetRouter.set('/', home.toHome, 'get');
 
   SetRouter.set('/login', login.toLogin, 'get', false, true);

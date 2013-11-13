@@ -1,0 +1,20 @@
+.logo {
+  float: left;
+}
+.account-box {
+  float: right;
+}
+.account-box a {
+  display: block;
+  float: left;
+}
+
+.content {}
+.content-info {}
+.user-image {}
+.content-title {}
+.send-time {}
+
+.content-item-list {}
+.content-item {}
+.content-item img {}
