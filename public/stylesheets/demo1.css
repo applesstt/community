@@ -16,5 +16,10 @@
 .send-time {}
 
 .content-item-list {}
-.content-item {}
-.content-item img {}
+.content-item {
+  margin-top: 20px;
+}
+.content-item img {
+  display: block;
+  margin-top: 20px;
+}
