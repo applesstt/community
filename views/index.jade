@@ -3,30 +3,18 @@ extends layout
 block content
   .row
     .box
-      .col-lg-12.text-center
-        h1
-          small Welcome to
-          br
-          span.brand-name Business Casual
-          hr.tagline-divider
-          small By
-            strong Start Bootstrap
-
-
-  .row
-    .box
       - for(var i = 0; i < posts.length; i++)
-        .col-lg-12
-          hr
-          h2.text-center #{posts[i]['title']}
-          h3.text-center
-            a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
-            small #{posts[i]['time']['day']}
+        .row
+          .col-lg-6
+            h2 #{posts[i]['title']}
+          .col-lg-6.text-right
+            h3: a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
+              small #{posts[i]['time']['day']}
           - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
-            hr
+        .row
             img.img-responsive.img-border.img-left(src='/upload/images/200_#{posts[i]["image"]}')
-          hr.visible-xs
-          p !{posts[i]['post']}
+            hr.visible-xs
+            p !{posts[i]['post']}
       .col-lg-12.text-center
         ul.pager
           - if(!isFirst)
