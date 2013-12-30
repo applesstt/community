@@ -7,92 +7,48 @@ Yachuan Li
 
 * Node project with express grunt and MongoDB
 
-##安装
+##\u5B89\u88C5
 
-* 安装mongodb
+* \u5B89\u88C5mongodb
 
 * npm install
 
-* brew install imagemagick （图片处理模块）
+* brew install imagemagick \uFF08\u56FE\u7247\u5904\u7406\u6A21\u5757\uFF09
 
 * Mac sh(https://github.com/masterkain/ImageMagick-sl)
 
 * wysihtml5 insert image: editorInstance.composer.commands.exec("insertImage", { src: "http://url.com/foo.jpg", alt: "this is an image" });
 
-##第一阶段
+##\u7B2C\u4E00\u9636\u6BB5
 
-* 使用Node express grunt MongoDB搭建常见的基础程序
+* \u4F7F\u7528Node express grunt MongoDB\u642D\u5EFA\u5E38\u89C1\u7684\u57FA\u7840\u7A0B\u5E8F
 
-###功能 
+###\u529F\u80FD 
 
-####第一个迭代 2013-09-23 至 2013-10-12 共20天
+####\u7B2C\u4E00\u4E2A\u8FED\u4EE3 2013-09-23 \u81F3 2013-10-12 \u517120\u5929
 
-* 开发环境搭建 - （已完成）
+* \u5F00\u53D1\u73AF\u5883\u642D\u5EFA - \uFF08\u5DF2\u5B8C\u6210\uFF09
 
-* 用户註冊、登录、退出 - (已完成)
+* \u7528\u6237\u8A3B\u518A\u3001\u767B\u5F55\u3001\u9000\u51FA - (\u5DF2\u5B8C\u6210)
 
-* 内容增删改 - （已完成）
+* \u5185\u5BB9\u589E\u5220\u6539 - \uFF08\u5DF2\u5B8C\u6210\uFF09
 
-* 上传文件、上传图片、图片处理 - （已完成）
+* \u4E0A\u4F20\u6587\u4EF6\u3001\u4E0A\u4F20\u56FE\u7247\u3001\u56FE\u7247\u5904\u7406 - \uFF08\u5DF2\u5B8C\u6210\uFF09
 
-####第二个迭代 2013-10-14 至 2013-11-01 约18天 （代码暂时告一段落，开始产品方向和PS的学习工作。2013-10-17）
+####\u7B2C\u4E8C\u4E2A\u8FED\u4EE3 2013-10-14 \u81F3 2013-11-01 \u7EA618\u5929 \uFF08\u4EE3\u7801\u6682\u65F6\u544A\u4E00\u6BB5\u843D\uFF0C\u5F00\u59CB\u4EA7\u54C1\u65B9\u5411\u548CPS\u7684\u5B66\u4E60\u5DE5\u4F5C\u30022013-10-17\uFF09
 
-* 发邮件 Nodemailer(http://toozhao.com/2011/10/26/201110node-js-send-e-mail/) (3) - （已完成）
+* \u53D1\u90AE\u4EF6 Nodemailer(http://toozhao.com/2011/10/26/201110node-js-send-e-mail/) (3) - \uFF08\u5DF2\u5B8C\u6210\uFF09
 
-* 引入bootstrap （1） - （已完成）
+* \u5F15\u5165bootstrap \uFF081\uFF09 - \uFF08\u5DF2\u5B8C\u6210\uFF09
 
-* 豆瓣小组命名及建立 （准备100个马甲）
+* weibo\u3001qq\u3001\u4EBA\u4EBA\u7B49\u7B2C\u4E09\u65B9\u5E73\u53F0\u767B\u5F55 \uFF08weibo - 2\uFF0C qq - 2\uFF0C \u4EBA\u4EBA - 2\uFF09
 
-* 百度贴吧命名及建立 （自备10个马甲）
+* js css \u538B\u7F29\u3001\u5408\u5E76 \uFF083\uFF09- \u5EF6\u540E
 
-* weibo、qq、人人等第三方平台登录 （weibo - 2， qq - 2， 人人 - 2）
+* js css \u6587\u4EF6\u540D\u589E\u52A0md5\u7F16\u7801 \uFF082\uFF09- \u5EF6\u540E
 
-* js css 压缩、合并 （3）- 延后
+* \u5F15\u5165grunt \uFF083\uFF09- \u5EF6\u540E
 
-* js css 文件名增加md5编码 （2）- 延后
-
-* 引入grunt （3）- 延后
-
-* 支付宝或银联在线支付 - 延后
+* \u652F\u4ED8\u5B9D\u6216\u94F6\u8054\u5728\u7EBF\u652F\u4ED8 - \u5EF6\u540E
  
-* 域名购买 备案 （？）
-
-* 公司 - 暂时使用茶贸的公司牌照
-
-
-##计划
-
-* 网站方向及副产品 10月25日 - 10月27日 （未完成 推迟到10月29日）  10月28日完成 功能已细化 预估约21个工作日
-* 暂停其他工作 重新梳理方向 无期限
-
-
-###产品方向
-
-* 需要一个非常非常非常非常创新的方向 对现有的需求和解决重新整合重新定义
-* 二次元世界评测
-
-###产品设计
-
-* 网站定位 - 互联网深度腹黑用户 相对于糗百 更腹黑、二次元
-* 功能块 短内容 问答区 专题（编辑专题、活动专题-用户参与上传活动）- 下一步 对功能细分
-* 用户（包括用户的登录、注册方式、邀请机制、用户级别、用户基本属性、头像）
-* 核心内容的方向、形式
-* 促进第三方平台的分享、传播机制
-* 专题形式
-* 网站彩蛋
-* 用户体验做到极端！！！
-* 首页能展示50%以上的最精彩内容 投入50%以上的时间
-* 种子用户的服务、奖励、访谈 月度任务榜单
-* 用户间的沟通方式 回帖、回帖提醒、私信、邮件提醒
-
-##第二阶段
-
-* 产品设计
-
-* 学习PS
-
-* 购买服务器
-
-* 第一版测试、交付
-
-* 社区运营、圈子
+* \u57DF\u540D\u8D2D\u4E70 \u5907\u6848 \uFF08\uFF1F\uFF09

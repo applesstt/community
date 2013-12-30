@@ -8,13 +8,13 @@ block content
           .col-lg-6
             h2 #{posts[i]['title']}
           .col-lg-6.text-right
-            h3: a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
-              small #{posts[i]['time']['day']}
-          - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
+            a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
+            em #{posts[i]['time']['day']}
         .row
+          - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
             img.img-responsive.img-border.img-left(src='/upload/images/200_#{posts[i]["image"]}')
-            hr.visible-xs
-            p !{posts[i]['post']}
+          hr.visible-xs
+          p !{posts[i]['post']}
       .col-lg-12.text-center
         ul.pager
           - if(!isFirst)
