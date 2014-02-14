@@ -9,13 +9,20 @@ var auth = require('../controllers/auth.js'),
 var SetRouter = (function() {
   var _app;
 
-  var set = function(url, fun, type, isLogin, isNotLogin) {
-    isNotLogin = typeof isNotLogin === 'undefined' ? false : !!isNotLogin;
-    isLogin = typeof isLogin === 'undefined' ? false : !!isLogin;
+  /**
+   * @param url: url pattern
+   * @param fun: callback
+   * @param type: rest type
+   * @param status: default - null, 1 - check login, 2 - check not login
+   */
+  var set = function(url, fun, type, status) {
+    status = typeof status === 'undefined' ? 0 : status;
+    var _hasLogin = status === 1 && true;
+    var _hasNotLogin = status === 2 && true;
     type = typeof type === 'undefined' ? 'get' : type;
-    if(isNotLogin) {
+    if(_hasNotLogin) {
       _app[type](url, auth.checkNotLogin);
-    } else if(isLogin) {
+    } else if(_hasLogin) {
       _app[type](url, auth.checkLogin);
     }
     _app[type](url, fun);
@@ -31,35 +38,39 @@ var SetRouter = (function() {
 }).call(this);
 
 module.exports = function(app) {
+  //Set login and not login flag
+  var _hasLogin = 1, _hasNotLogin = 2;
+
+  //SetRouter init
   SetRouter.init(app);
 
   SetRouter.set('/demo1', home.toDemo1, 'get');
 
   SetRouter.set('/', home.toHome, 'get');
 
-  SetRouter.set('/login', login.toLogin, 'get', false, true);
-  SetRouter.set('/login', login.doLogin, 'post', false, true);
+  SetRouter.set('/login', login.toLogin, 'get', _hasNotLogin);
+  SetRouter.set('/login', login.doLogin, 'post', _hasNotLogin);
 
-  SetRouter.set('/reg', regist.toReg, 'get', false, true);
-  SetRouter.set('/reg', regist.doReg, 'post', false, true);
+  SetRouter.set('/reg', regist.toReg, 'get', _hasNotLogin);
+  SetRouter.set('/reg', regist.doReg, 'post', _hasNotLogin);
 
-  SetRouter.set('/post', article.toPost, 'get', true);
-  SetRouter.set('/post', article.doPost, 'post', true);
-  SetRouter.set('/uploadImage', article.doUploadImage, 'post', true);
+  SetRouter.set('/post', article.toPost, 'get', _hasLogin);
+  SetRouter.set('/post', article.doPost, 'post', _hasLogin);
+  SetRouter.set('/uploadImage', article.doUploadImage, 'post', _hasLogin);
 
   SetRouter.set('/u/:name', user.toUser, 'get');
   SetRouter.set('/u/:name/:day/:title', article.toView, 'get');
   SetRouter.set('/u/:name/:day/:title', article.doComment, 'post');
 
-  SetRouter.set('/edit/:name/:day/:title', article.toUpdate, 'get', true);
-  SetRouter.set('/edit/:name/:day/:title', article.doUpdate, 'post', true);
+  SetRouter.set('/edit/:name/:day/:title', article.toUpdate, 'get', _hasLogin);
+  SetRouter.set('/edit/:name/:day/:title', article.doUpdate, 'post', _hasLogin);
 
-  SetRouter.set('/remove/:name/:day/:title', article.remove, 'get', true);
+  SetRouter.set('/remove/:name/:day/:title', article.remove, 'get', _hasLogin);
 
-  SetRouter.set('/mail', mail.toMail, 'get', true);
-  SetRouter.set('/mail', mail.doMail, 'post', true);
+  SetRouter.set('/mail', mail.toMail, 'get', _hasLogin);
+  SetRouter.set('/mail', mail.doMail, 'post', _hasLogin);
 
-  SetRouter.set('/logout', login.logout, 'get', true);
+  SetRouter.set('/logout', login.logout, 'get', _hasLogin);
 
   app.use(function(req, res) {
     res.render('404', {
