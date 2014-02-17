@@ -1,19 +1,15 @@
 extends layout/layout
 
 block content
-  h1= title
-  form(method = 'post')
-    div
-      label 用户名
-        input(name = 'name')
-    div
-      label 密码
-        input(type = 'password', name = 'password')
-    div
-      label 确认密码
-        input(type = 'password', name = 'repeat_password')
-    div
-      label 邮箱
-        input(name = 'email')
-    div
-      button(type = 'submit') 注册
+  form.col-md-4.col-md-offset-4(method = 'post')
+    h1= title
+    p
+      input.form-control(name = 'name', placeholder='请输入用户名')
+    p
+      input.form-control(type = 'password', name = 'password', placeholder='请输入密码')
+    p
+      input.form-control(type = 'password', name = 'repeat_password', placeholder='再次输入密码')
+    p
+      input.form-control(name = 'email', placeholder='请输入邮箱')
+    p
+      button.btn.btn-lg.btn-primary.btn-block(type = 'submit') 注册
