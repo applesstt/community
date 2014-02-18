@@ -1,23 +1,28 @@
 - if(typeof post.comments !== 'undefined' && post.comments.length > 0)
-  div
+  p
     - for(var i = 0; i < post.comments.length; i++)
       p
         a(href = '#{post.comments[i]["website"]}')= post.comments[i]['name']
         p= post.comments[i]['content']
 form(method = 'post', enctype = 'multipart/form-data')
   - if(user)
-    div 姓名：
-      input(name = 'name', value = '#{user.name}')
-    div 邮箱：
-      input(name = 'email', value = '#{user.email}')
+    .form-group
+      label(for='user-name') 姓名：
+      input.form-control(name = 'name', id='user-name', value = '#{user.name}')
+    .form-group
+      label(for='user-email') 邮箱：
+      input.form-control(name = 'email', id='user-email', value = '#{user.email}')
   - else
-    div 姓名：
-      input(name = 'name', placeholder = '请输入姓名')
-    div 邮箱：
-      input(name = 'email', placeholder = '请输入邮箱')
-  div 网址：
-    input(name = 'website', placeholder = 'http://')
-  div
-    textarea(name = 'content')
-  div
-    input(type = 'submit', value = '留言')
+    .form-group
+      label(for='user-name') 姓名：
+      input.form-control(name = 'name', id='user-name', placeholder = '请输入姓名')
+    .form-group
+      label(for='user-email') 邮箱：
+      input.form-control(name = 'email', id='user-email', placeholder = '请输入邮箱')
+  .form-group
+    label(for='user-website') 网址：
+    input.form-control(name = 'website', id='user-website', placeholder = 'http://')
+  .form-group
+    textarea.form-control(name = 'content')
+  .form-group
+    input.btn.btn-primary(type = 'submit', value = '留言')
