@@ -1,16 +1,18 @@
 extends layout/layout
 
 block content
-  h1= title
-  p.text-right 作者：
-    a(href='/u/#{post["name"]}') #{post['name']}
+  h3= title
+  .row
+    .col-md-6.text-left.h4
+      a(href='/u/#{post["name"]}') #{post['name']}
+    .col-md-6.text-right.text-muted #{post['time']['minute']}
   - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
     p 图片：
       img(src = '/upload/images/#{post["image"]}')
   p !{post['post']}
-  p.text-right #{post['time']['minute']}
   - if(typeof user !== 'undefined' && user.name == post.name)
     p
       a.btn.btn-primary(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
+      |
       a.btn.btn-primary(href='/remo ve/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
   include comment
