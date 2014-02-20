@@ -2,16 +2,15 @@ extends layout/layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  p 作者：
+  p.text-right 作者：
     a(href='/u/#{post["name"]}') #{post['name']}
   - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
     p 图片：
       img(src = '/upload/images/#{post["image"]}')
-  p 内容：!{post['post']}
-  p 发布时间: #{post['time']['minute']}
+  p !{post['post']}
+  p.text-right #{post['time']['minute']}
   - if(typeof user !== 'undefined' && user.name == post.name)
-    p.btn-group
+    p
       a.btn.btn-primary(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
       a.btn.btn-primary(href='/remo ve/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
   include comment
