@@ -3,7 +3,7 @@ extends layout/layout
 block content
   h3= title
   .row
-    .col-md-6.text-left.h4
+    .col-md-6.text-left
       a(href='/u/#{post["name"]}') #{post['name']}
     .col-md-6.text-right.text-muted #{post['time']['minute']}
   - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
