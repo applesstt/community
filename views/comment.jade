@@ -1,9 +1,9 @@
 - if(typeof post.comments !== 'undefined' && post.comments.length > 0)
   p
     - for(var i = 0; i < post.comments.length; i++)
-      p
-        a(href = '#{post.comments[i]["website"]}')= post.comments[i]['name']
-        p= post.comments[i]['content']
+      .panel
+        a.text-right(href = '#{post.comments[i]["website"]}')= post.comments[i]['name']
+        p #{post.comments[i]['content']}
 form(method = 'post', enctype = 'multipart/form-data')
   - if(user)
     .form-group

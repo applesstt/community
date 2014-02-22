@@ -13,6 +13,6 @@ block content
   - if(typeof user !== 'undefined' && user.name == post.name)
     p
       a.btn.btn-primary(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
-      |
+      |&nbsp;
       a.btn.btn-primary(href='/remo ve/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
   include comment
