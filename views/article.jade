@@ -10,7 +10,7 @@ block content
     p
       a.btn.btn-xs.btn-primary(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
       | &nbsp;
-      a.btn.btn-xs.btn-primary(href='/remo ve/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
+      a.btn.btn-xs.btn-primary(href='/remove/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
   - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
     p 图片：
       img(src = '/upload/images/#{post["image"]}')
