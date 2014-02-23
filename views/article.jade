@@ -5,7 +5,7 @@ block content
   .row
     .col-md-6.text-left
       a(href='/u/#{post["name"]}') #{post['name']}
-    .col-md-6.text-right.text-muted #{post['time']['minute']}
+    .col-md-6.text-right.text-muted #{post['time']['day']}
   - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
     p 图片：
       img(src = '/upload/images/#{post["image"]}')
