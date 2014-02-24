@@ -41,8 +41,7 @@ html
     - if((success && success.length > 0) || (error && error.length > 0))
       .container.alert.alert-info.alert-dismissable
         button.close(data-dismiss="alert" aria-hidden="true") ×
-        | #{success || error}
-
+        | #{(success && success.length > 0) ? success : error}
     .container
       block content
 
