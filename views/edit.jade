@@ -3,11 +3,14 @@ extends layout/layout
 block content
   h1= title
   form(method = 'post', enctype = 'multipart/form-data')
-    div 标题：
-      input(name = 'title', disabled = 'disabled', value = '#{post["title"]}')
+    .form-group
+      label(for='') 标题
+      input.form-control(name='title', disabled='disabled', value='#{post["title"]}')
     - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
-      div 图片：
-        img(src = '/upload/images/#{post["image"]}')
-    div 正文：
-      textarea(name = 'post', rows = '20', cols = '180') #{post.post}
-    input(type = 'submit') 保存修改
+      .form-group
+        label 图片
+        img.form-control-static(src='/upload/images/#{post["image"]}')
+    .form-group
+      label(for='') 正文
+      textarea.form-control(name='post', rows='20', cols='180') #{post.post}
+    input.btn.btn-primary(type = 'submit', value='保存')

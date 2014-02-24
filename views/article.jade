@@ -7,7 +7,7 @@ block content
       a(href='/u/#{post["name"]}') #{post['name']}
     .col-md-6.text-right.text-muted #{post['time']['day']}
   - if(typeof user !== 'undefined' && user.name == post.name)
-    p
+    p.text-right
       a.btn.btn-xs.btn-primary(href='/edit/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 编辑
       | &nbsp;
       a.btn.btn-xs.btn-primary(href='/remove/#{post["name"]}/#{post["time"]["day"]}/#{post["title"]}') 删除
