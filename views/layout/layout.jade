@@ -27,6 +27,8 @@ html
             if user
               li
                 a(href='/post') 发布
+          ul.nav.navbar-nav.navbar-right
+            if user
               li
                 a(href='/u/#{user.name}') #{user.name}
               li
@@ -36,11 +38,10 @@ html
                 a(href='/login') 登录
               li
                 a(href='/reg') 注册
-
-    if success
-      = success
-    if error
-      = error
+    - if((success && success.length > 0) || (error && error.length > 0))
+      .container.alert.alert-info.alert-dismissable
+        button.close(data-dismiss="alert" aria-hidden="true") ×
+        | #{success || error}
 
     .container
       block content
