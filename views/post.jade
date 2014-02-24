@@ -4,49 +4,46 @@ block css_content
 block content
   h1= title
   form#post-form(method = 'post', enctype = 'multipart/form-data')
-    div 标题：
-      input(name = 'title')
-    div 图片：
-      input(name = 'image', type = 'file')
-    div 正文：
-    div(id = 'wysihtml5-editor-toolbar')
-      header
-        ul.commands
-          li.command(data-wysihtml5-command = 'bold', title = 'Make text bold (CTRL + B)')
-          li.command(data-wysihtml5-command = 'italic', title = 'Make text italic (CTRL + I)')
-          li.command(data-wysihtml5-command = 'insertUnorderedList', title = 'Insert an unordered list')
-          li.command(data-wysihtml5-command = 'insertOrderedList', title = 'Insert an ordered list')
-          li.command(data-wysihtml5-command = 'createLink', title = 'Insert a link')
-          li.command(data-wysihtml5-command = 'insertImage', title = 'Insert an image')
-          li.command(data-wysihtml5-command = 'formatBlock', data-wysihtml5-command-value = 'h1', title = 'Insert headline 1')
-          li.command(data-wysihtml5-command = 'formatBlock', data-wysihtml5-command-value = 'h2', title = 'Insert headline 2')
-          li.fore-color(data-wysihtml5-command-group = 'foreColor', title = 'Color the selected text')
-            ul
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'silver')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'gray')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'maroon')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'red')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'purple')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'green')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'olive')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'navy')
-              li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = 'blue')
-          li.command(data-wysihtml5-command = 'insertSpeech', title = 'Insert speech')
-          li.action(data-wysihtml5-action = 'change_view', title = 'Show HTML')
-      div(data-wysihtml5-dialog = 'createLink', style = 'display: none;')
-        label Link:
-          input(data-wysihtml5-dialog-field = 'href', value = 'http://')
-        a(data-wysihtml5-dialog-action = 'save') OK
-        a(data-wysihtml5-dialog-action = 'cancel') Cancel
-      div(data-wysihtml5-dialog = 'insertImage', style = 'display: none;')
-        input#upload-image(name='upload-image', type='file', value='上传图片')
-        lavel Image:
-          input#image_path(data-wysihtml5-dialog-field = 'src', value = 'http://')
-        a(data-wysihtml5-dialog-action = 'save') OK
-        a(data-wysihtml5-dialog-action = 'cancel') Cancel
-    section
-     textarea(id = 'wysihtml5-editor', name = 'post', spellcheck = 'false', wrap = 'off', placeholder = 'Enter something ...')
-    input#post-submit(type = 'submit') 发布
+    .form-group
+      label(for='post_title') 标题
+      input.form-control(name='title', id='post_title')
+    .form-group
+      label(for='post_image') 图片
+      input.form-control(name='image', type='file', id='post_image')
+    .form-group
+      label 正文
+      .form-control-static
+        #wysihtml5-editor-toolbar
+          header
+            ul.commands
+              li.command(data-wysihtml5-command = 'bold', title = 'Make text bold (CTRL + B)')
+              li.command(data-wysihtml5-command = 'italic', title = 'Make text italic (CTRL + I)')
+              li.command(data-wysihtml5-command = 'insertUnorderedList', title = 'Insert an unordered list')
+              li.command(data-wysihtml5-command = 'insertOrderedList', title = 'Insert an ordered list')
+              li.command(data-wysihtml5-command = 'createLink', title = 'Insert a link')
+              li.command(data-wysihtml5-command = 'insertImage', title = 'Insert an image')
+              li.command(data-wysihtml5-command = 'formatBlock', data-wysihtml5-command-value = 'h1', title = 'Insert headline 1')
+              li.command(data-wysihtml5-command = 'formatBlock', data-wysihtml5-command-value = 'h2', title = 'Insert headline 2')
+              li.fore-color(data-wysihtml5-command-group = 'foreColor', title = 'Color the selected text')
+                ul
+                  - each color in ['silver','gray','maroon','red','purple','green','olive','navy','blue']
+                    li(data-wysihtml5-command = 'foreColor', data-wysihtml5-command-value = color)
+              li.command(data-wysihtml5-command = 'insertSpeech', title = 'Insert speech')
+              li.action(data-wysihtml5-action = 'change_view', title = 'Show HTML')
+          div(data-wysihtml5-dialog = 'createLink', style = 'display: none;')
+            label Link:
+              input(data-wysihtml5-dialog-field = 'href', value = 'http://')
+            a(data-wysihtml5-dialog-action = 'save') OK
+            a(data-wysihtml5-dialog-action = 'cancel') Cancel
+          div(data-wysihtml5-dialog = 'insertImage', style = 'display: none;')
+            input#upload-image(name='upload-image', type='file', value='上传图片')
+            lavel Image:
+              input#image_path(data-wysihtml5-dialog-field = 'src', value = 'http://')
+            a(data-wysihtml5-dialog-action = 'save') OK
+            a(data-wysihtml5-dialog-action = 'cancel') Cancel
+        section
+         textarea(id = 'wysihtml5-editor', name = 'post', spellcheck = 'false', wrap = 'off', placeholder = 'Enter something ...')
+    input#post-submit.btn.btn-primary(type = 'submit') 发布
 
 block js_content
   script(src = 'vendor/wysihtml5/parser_rules/advanced.js')
