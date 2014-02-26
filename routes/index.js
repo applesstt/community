@@ -6,71 +6,44 @@ var auth = require('../controllers/auth.js'),
   mail = require('../controllers/mail.js'),
   user = require('../controllers/user.js');
 
-var SetRouter = (function() {
-  var _app;
-
-  /**
-   * @param url: url pattern
-   * @param fun: callback
-   * @param type: rest type
-   * @param status: default - null, 1 - check login, 2 - check not login
-   */
-  var set = function(url, fun, type, status) {
-    status = typeof status === 'undefined' ? 0 : status;
-    var _hasLogin = status === 1 && true;
-    var _hasNotLogin = status === 2 && true;
-    type = typeof type === 'undefined' ? 'get' : type;
-    if(_hasNotLogin) {
-      _app[type](url, auth.checkNotLogin);
-    } else if(_hasLogin) {
-      _app[type](url, auth.checkLogin);
-    }
-    _app[type](url, fun);
-  };
-
-  var init = function(app) {
-    _app = app;
-  };
-  return {
-    init: init,
-    set: set
-  }
-}).call(this);
-
 module.exports = function(app) {
-  //Set login and not login flag
-  var _hasLogin = 1, _hasNotLogin = 2;
 
-  //SetRouter init
-  SetRouter.init(app);
+  app.get('/demo1', home.toDemo1);
 
-  SetRouter.set('/demo1', home.toDemo1, 'get');
+  app.get('/', home.toHome);
 
-  SetRouter.set('/', home.toHome, 'get');
+  app.all('/login*', auth.checkNotLogin);
+  app.get('/login', login.toLogin);
+  app.post('/login', login.doLogin);
 
-  SetRouter.set('/login', login.toLogin, 'get', _hasNotLogin);
-  SetRouter.set('/login', login.doLogin, 'post', _hasNotLogin);
+  app.all('/reg*', auth.checkNotLogin);
+  app.get('/reg', regist.toReg);
+  app.post('/reg', regist.doReg);
 
-  SetRouter.set('/reg', regist.toReg, 'get', _hasNotLogin);
-  SetRouter.set('/reg', regist.doReg, 'post', _hasNotLogin);
+  app.all('/post', auth.checkLogin);
+  app.get('/post', article.toPost);
+  app.post('/post', article.doPost);
 
-  SetRouter.set('/post', article.toPost, 'get', _hasLogin);
-  SetRouter.set('/post', article.doPost, 'post', _hasLogin);
-  SetRouter.set('/uploadImage', article.doUploadImage, 'post', _hasLogin);
+  app.post('/uploadImage', auth.checkLogin);
+  app.post('/uploadImage', article.doUploadImage);
 
-  SetRouter.set('/u/:name', user.toUser, 'get');
-  SetRouter.set('/u/:name/:day/:title', article.toView, 'get');
-  SetRouter.set('/u/:name/:day/:title', article.doComment, 'post');
+  app.get('/u/:name', user.toUser);
+  app.get('/u/:name/:day/:title', article.toView);
+  app.post('/u/:name/:day/:title', article.doComment);
 
-  SetRouter.set('/edit/:name/:day/:title', article.toUpdate, 'get', _hasLogin);
-  SetRouter.set('/edit/:name/:day/:title', article.doUpdate, 'post', _hasLogin);
+  app.all('/edit/:name/:day/:title', auth.checkLogin);
+  app.get('/edit/:name/:day/:title', article.toUpdate);
+  app.post('/edit/:name/:day/:title', article.doUpdate);
 
-  SetRouter.set('/remove/:name/:day/:title', article.remove, 'get', _hasLogin);
+  app.get('/remove/:name/:day/:title', auth.checkLogin);
+  app.get('/remove/:name/:day/:title', article.remove);
 
-  SetRouter.set('/mail', mail.toMail, 'get', _hasLogin);
-  SetRouter.set('/mail', mail.doMail, 'post', _hasLogin);
+  app.all('/mail*', auth.checkLogin);
+  app.get('/mail', mail.toMail);
+  app.post('/mail', mail.doMail);
 
-  SetRouter.set('/logout', login.logout, 'get', _hasLogin);
+  app.all('/logout', auth.checkLogin);
+  app.get('/logout', login.logout);
 
   app.use(function(req, res) {
     res.render('404', {

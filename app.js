@@ -46,6 +46,8 @@ app.use(flash());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./routes')(app);
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -56,5 +58,3 @@ if ('development' == app.get('env')) {
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-routes(app);
