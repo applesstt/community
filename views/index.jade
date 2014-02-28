@@ -24,7 +24,7 @@ block content
       - if(!isFirst)
         li.previous
           a(href = '?page=#{page - 1}') ← 上一页
-      - if((isFirst && !isLast) || !isLast)
+      - if(!isLast)
         li.next
           a(href = '?page=#{page + 1}') 下一页 →
 
