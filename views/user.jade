@@ -2,17 +2,4 @@ extends layout/layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  - for(var i = 0; i < posts.length; i++)
-    div
-      div 标题：
-        a(href = '/u/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') #{posts[i]['title']}
-      - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
-        div 图片：
-          img(src = '/upload/images/200_#{posts[i]["image"]}')
-      div 内容：!{posts[i]['post']}
-      div 发布时间: #{posts[i]['time']['minute']}
-  - if(!isFirst)
-    a(href = '?page=#{page - 1}') 上一页
-  - if((isFirst && !isLast) || !isLast)
-    a(href = '?page=#{page + 1}') 下一页
+  include include/posts

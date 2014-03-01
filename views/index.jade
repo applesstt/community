@@ -1,17 +1,4 @@
 extends layout/layout
 
 block content
-  - for(var i = 0; i < posts.length; i++)
-    - var post = posts[i]
-    include include/post
-  .text-center
-    ul.pager
-      - if(!isFirst)
-        li.previous
-          a(href = '?page=#{page - 1}') ← 上一页
-      - if(!isLast)
-        li.next
-          a(href = '?page=#{page + 1}') 下一页 →
-
-block js_content
-  script(src='js/index.js')
+  include include/posts
