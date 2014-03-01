@@ -2,23 +2,8 @@ extends layout/layout
 
 block content
   - for(var i = 0; i < posts.length; i++)
-    .panel
-      h3
-        a(href='/u/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') #{posts[i]['title']}
-      .row
-        .col-md-6.text-left
-          a(href='/u/#{posts[i]["name"]}') #{posts[i]['name']}
-        time.col-md-6.text-right.text-muted #{posts[i]['time']['day']}
-      - if(user && user.name == posts[i].name)
-        p.text-right
-          a.btn.btn-xs.btn-primary(href='/edit/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') 编辑
-          | &nbsp;
-          a.btn.btn-xs.btn-primary(href='/remove/#{posts[i]["name"]}/#{posts[i]["time"]["day"]}/#{posts[i]["title"]}') 删除
-      p
-        - if(typeof posts[i]['image'] !== 'undefined' && posts[i]['image'] !== '')
-          img.img-responsive.img-border.img-left(src='/upload/images/200_#{posts[i]["image"]}')
-        hr.visible-xs
-        p !{posts[i]['post']}
+    - var post = posts[i]
+    include include/post
   .text-center
     ul.pager
       - if(!isFirst)
