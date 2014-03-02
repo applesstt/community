@@ -1,17 +1,22 @@
 .panel
-  h3
-    a(href='/u/#{post.name}/#{post.time.day}/#{post.title}') #{post.title}
+  .row
+    .col-md-10
+      a.h3(href='/u/#{post.name}/#{post.time.day}/#{post.title}') #{post.title}
+    - if(user && user.name == post.name)
+      .col-md-2.text-right
+        a(href='/edit/#{post.name}/#{post.time.day}/#{post.title}')
+          span.glyphicon.glyphicon-edit
+          | 编辑
+        |&nbsp;
+        a(href='/remove/#{post.name}/#{post.time.day}/#{post.title}')
+          span.glyphicon.glyphicon-trash
+          | 删除
   .row
     .col-md-6.text-left
       a(href='/u/#{post.name}') #{post.name}
     time.col-md-6.text-right.text-muted #{post.time.day}
-  - if(user && user.name == post.name)
-    p.text-right
-      a.btn.btn-xs.btn-primary(href='/edit/#{post.name}/#{post.time.day}/#{post.title}') 编辑
-      | &nbsp;
-      a.btn.btn-xs.btn-primary(href='/remove/#{post.name}/#{post.time.day}/#{post.title}') 删除
   p
     - if(typeof post.image !== 'undefined' && post.image !== '')
       img.img-responsive.img-border.img-left(src='/upload/images/200_#{post.image}')
-    hr.visible-xs
-    p !{post.post}
+  hr.visible-xs
+  p !{post.post}
