@@ -1,12 +1,11 @@
 - if(typeof post.comments !== 'undefined' && post.comments.length > 0)
-  p
+  .panel
     - for(var i = 0; i < post.comments.length; i++)
-      .panel.clearfix
+      .panel-body.row
         .col-md-1.text-right
           a(href = '#{post.comments[i]["website"]}')= post.comments[i]['name']
           |:
-        .col-md-11
-          p #{post.comments[i]['content']}
+        .col-md-11 #{post.comments[i]['content']}
 form(method = 'post', enctype = 'multipart/form-data')
   - if(user)
     .form-group

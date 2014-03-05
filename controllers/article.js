@@ -14,7 +14,7 @@ exports.toPost = function(req, res) {
 
 exports.doPost = function(req, res) {
   var user = req.session.user;
-  var image_name = req.files.image.name;
+  /*var image_name = req.files.image.name;
   if(image_name !== '') {
     image_name = (new Date()).getTime() + '_' + image_name;
     var target_path = './public/upload/images/' + image_name;
@@ -31,12 +31,12 @@ exports.doPost = function(req, res) {
         console.log('Resize ' + target_path + ' to 200px width image!');
       }
     })
-  }
+  }*/
   var post = new Post({
     name: user.name,
     title: req.body.title,
-    post: req.body.post,
-    image: image_name
+    //image: image_name,
+    post: req.body.post
   });
   post.save(function(err) {
     if(err) {
