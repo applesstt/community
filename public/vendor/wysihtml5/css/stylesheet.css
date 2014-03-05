@@ -6,7 +6,7 @@
   padding-left: 0;
   display: block;
   border-radius: 4px;
-  width: 810px;
+  width: 100%;
   background: #f6f6f6;
   position: relative;
   z-index: 1;
@@ -243,8 +243,12 @@
   background: #999;
 }
 
+section {
+  width: 100%;
+}
+
 textarea {
-  width: 800px;
+  width: 100%;
   background: transparent;
   height: 300px;
   border: 0;
