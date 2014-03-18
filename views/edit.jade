@@ -6,7 +6,7 @@ block content
     .form-group
       label(for='edit_title') 标题
       input.form-control(name='title', id='edit_title', disabled, value='#{post["title"]}')
-    - if(typeof post['image'] !== 'undefined' && post['image'] !== '')
+    - if(typeof post['image'] !== 'undefined' && post['image'])
       .form-group
         label 图片
         img.form-control-static(src='/upload/images/#{post["image"]}')

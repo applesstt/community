@@ -92,7 +92,7 @@ exports.doUpdate = function(req, res) {
   var day = req.params.day;
   var title = req.params.title;
   Post.update(currentUser.name, day, title, req.body.post, function(err) {
-    var url = '/u/' + name + '/' + day + '/' + title;
+    var url = '/u/' + name + '/' + day + '/' + encodeURIComponent(title);
     if(err) {
       req.flash('error', err);
       return res.redirect(url);
