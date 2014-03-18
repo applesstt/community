@@ -19,7 +19,7 @@ $('#upload-image').change(function() {
     dataType: 'json',
     success: function(result) {
       if(result) {
-        var imagePath200 = 'http://' + location.host + '/' + result.base_path + '200_' + result.image;
+        var imagePath200 = 'http://' + location.host + '/' + result.base_path + '580_' + result.image;
         $('#image_path').val(imagePath200);
       }
     }
