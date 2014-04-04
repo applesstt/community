@@ -9,6 +9,7 @@ var auth = require('../controllers/auth.js'),
 module.exports = function(app) {
 
   app.get('/demo1', home.toDemo1);
+  app.get('/demo42009', home.toDemo42009);
 
   app.get('/', home.toHome);
 
