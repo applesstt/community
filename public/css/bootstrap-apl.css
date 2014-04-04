@@ -46,3 +46,7 @@ a.footer-power {
   padding-left: 10px;
   color: #a5acb3;
 }
+
+.post-content img {
+  max-width: 100%;
+}

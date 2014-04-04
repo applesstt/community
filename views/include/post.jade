@@ -9,7 +9,7 @@
         a(href='/u/#{post.name}') #{post.name}
       time.col-md-6.text-right.text-muted #{post.time.day}
     br
-    div !{post.post}
+    .post-content !{post.post}
     - if(user && user.name == post.name)
       p.text-right
         a(href='/edit/#{post.name}/#{post.time.day}/#{titleEncode}')
