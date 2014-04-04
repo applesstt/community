@@ -1,15 +1,13 @@
 - var titleEncode = encodeURIComponent(post.title)
 h1
-  a(href='/u/#{post.name}/#{post.time.day}/#{titleEncode}') #{post.title}
-br
-.row
+  a.post-title(href='/u/#{post.name}/#{post.time.day}/#{titleEncode}') #{post.title}
+//.row
   .col-md-6.text-left
     a(href='/u/#{post.name}') #{post.name}
   time.col-md-6.text-right.text-muted #{post.time.day}
-br
 .post-content !{post.post}
 - if(user && user.name == post.name)
-  p.text-right
+  p.post-btns
     a(href='/edit/#{post.name}/#{post.time.day}/#{titleEncode}')
       span.glyphicon.glyphicon-edit
       | 编辑
