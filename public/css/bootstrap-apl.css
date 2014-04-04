@@ -46,7 +46,42 @@ a.footer-power {
   padding-left: 10px;
   color: #a5acb3;
 }
-
+.post-content {
+  font-size: 16px;
+  line-height: 1.8;
+}
 .post-content img {
   max-width: 100%;
+}
+.post-main {
+  position: relative;
+}
+.post-main:before {
+  border-left: 1px solid #ced5db;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -16px;
+  width: 1px;
+}
+.post-aside-body {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.post-aside-body img.avatar-max {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+.avatar-max {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+.post-account-title {
+  color: #404b55;
+  font-size: 20px;
+  text-align: center;
 }

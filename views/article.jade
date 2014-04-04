@@ -1,5 +1,11 @@
 extends layout/layout
 
 block content
-  include include/post
-  include comment
+  .row
+    .col-md-8.post-main
+      include include/post
+      include comment
+    .col-md-4.post-aside
+      .post-aside-body
+        img.avatar-max(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
+        .post-account-title 李亚川Apple

@@ -5,20 +5,11 @@
         p
           a(href = '#{post.comments[i]["website"]}')= post.comments[i]['name']
         p #{post.comments[i]['content']}
-form(method = 'post', enctype = 'multipart/form-data')
-  - if(user)
+- if(user)
+  form(method = 'post', enctype = 'multipart/form-data')
+    input(name = 'name', id='user-name', value = '#{user.name}', type = 'hidden')
+    input(name = 'email', id='user-email', value = '#{user.email}', type = 'hidden')
     .form-group
-      input.form-control(name = 'name', id='user-name', value = '#{user.name}', placeholder='姓名')
+      textarea.form-control(name = 'content', placeholder='评论')
     .form-group
-      input.form-control(name = 'email', id='user-email', value = '#{user.email}', placeholder='邮箱')
-  - else
-    .form-group
-      input.form-control(name = 'name', id='user-name', placeholder = '姓名')
-    .form-group
-      input.form-control(name = 'email', id='user-email', placeholder = '邮箱')
-  .form-group
-    input.form-control(name = 'website', id='user-website', placeholder = '网址')
-  .form-group
-    textarea.form-control(name = 'content', placeholder='评论')
-  .form-group
-    input.btn.btn-primary(type = 'submit', value = '发布')
+      input.btn.btn-primary(type = 'submit', value = '发布')
