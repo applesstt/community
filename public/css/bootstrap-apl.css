@@ -78,12 +78,12 @@ a.footer-power {
   right: -16px;
   width: 1px;
 }
-.post-aside-body {
-  padding-top: 40px;
+.aside-body {
+  padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
 }
-.post-aside-body img.avatar-max {
+.aside-body img.avatar-max {
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -116,7 +116,7 @@ a.footer-power {
   line-height: 16px;
   text-align: center;
 }
-.post-account-title {
+.aside-account-title {
   font-size: 20px;
   text-align: center;
   display: block;
@@ -174,12 +174,24 @@ a.post-buy {
   top: 15px;
   position: relative;
 }
-.post-aside-badge {
+.aside-user-info-box {
+  border-top: 1px solid #ced5db;
+  border-bottom: 1px solid #ced5db;
+  margin-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.aside-user-info {
+  padding-top: 20px;
+  display: block;
+}
+.aside-badge {
   margin-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
 }
-.post-aside-badge .col-md-3 {
+.aside-badge .col-md-3 {
   padding-left: 7px;
   padding-right: 7px;
 }
