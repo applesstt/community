@@ -1,17 +1,25 @@
 - var titleEncode = encodeURIComponent(post.title)
 h1
   a.post-title(href='/u/#{post.name}/#{post.time.day}/#{titleEncode}') #{post.title}
-//.row
+.row
   .col-md-6.text-left
-    a(href='/u/#{post.name}') #{post.name}
-  time.col-md-6.text-right.text-muted #{post.time.day}
+    a(href='/u/#{post.name}')
+      img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
+      |  #{post.name}
+  time.col-md-6.text-right.text-muted.post-time
+    .glyphicon.glyphicon-time
+    |  #{post.time.day}
 .post-content !{post.post}
+.post-buys
+  a.post-buy.text-muted(href='javascript:{}')
+    span.glyphicon.glyphicon-shopping-cart
+    |  京东商城
 - if(user && user.name == post.name)
   p.post-btns
     a(href='/edit/#{post.name}/#{post.time.day}/#{titleEncode}')
       span.glyphicon.glyphicon-edit
-      | 编辑
-    |&nbsp;
+      |  编辑
+    |&nbsp;&nbsp;
     a(href='/remove/#{post.name}/#{post.time.day}/#{titleEncode}')
       span.glyphicon.glyphicon-trash
-      | 删除
+      |  删除

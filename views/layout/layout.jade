@@ -24,18 +24,27 @@ html
           ul.nav.navbar-nav.navbar-right.navbar-nav-apl
             if user
               li
-                a(href='/post') 发布
+                a.navbar-nav-user(href='javascript:{}', title='#{user.name}')
+                  .avatar-min-wrap
+                    img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
+                    .user-msg-alert 1
               li
-                a(href='/u/#{user.name}') #{user.name}
+                a(href='/post')
+                  .glyphicon.glyphicon-plus
+                  |  发布
               li
-                a(href='/logout') 退出
+                a(href='/logout')
+                  .glyphicon.glyphicon-log-out
+                  |  退出
             else
               li
                 a(href='/login') 登录
               li
                 a(href='/reg') 注册
     .subheader
-      .container Embrace and Drive Change
+      .container.inspired
+        .glyphicon.glyphicon-leaf
+        |  Embrace and Drive Change
     - if((success && success.length > 0) || (error && error.length > 0))
       .container.alert.alert-info.alert-dismissable
         button.close(data-dismiss="alert",aria-hidden="true") ×
@@ -45,7 +54,9 @@ html
       block content
 
     footer.footer-apl
-      .container Power by
+      .container.inspired
+        .glyphicon.glyphicon-heart
+        |  Inspired by
         a.footer-power(href='http://github.com/applesstt') applesstt
     script(src='http://cdn.staticfile.org/jquery/1.11.0/jquery.min.js')
     script(src='http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js')
