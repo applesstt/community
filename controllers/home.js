@@ -8,7 +8,7 @@ exports.toHome = function(req, res) {
       posts = [];
     }
     res.render('index', {
-      title: '剁手组',
+      title: '败家党',
       user: req.session.user,
       success: req.flash('success'),
       error: req.flash('error'),

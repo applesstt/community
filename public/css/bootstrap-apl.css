@@ -6,21 +6,52 @@ a:hover, a:focus {
   text-decoration: none;
 }
 #logo {
+  display: block;
+  position: relative;
   font-size: 30px;
-  line-height: 30px;
-  height: 36px;
-  padding: 3px 15px;
+  line-height: 80px;
+  height: 80px;
+  padding: 3px 15px 3px 90px;
   float: left;
   color: #ffffff;
+}
+#logo span {
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 48px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  background-color: #d9534f;
+  border-radius: 50%;
+  -ms-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+#logo:hover span {
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
 }
 .navbar-apl {
   background-color: #242b32;
   color: #f8f8f9;
-  padding-top: 55px;
-  padding-bottom: 55px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   margin-bottom: 0;
   border-radius: 0;
   border: none;
+}
+.navbar-nav-apl {
+  margin-top: 20px;
 }
 .navbar-apl .navbar-nav-apl>li>a {
   border-radius: 4px;
