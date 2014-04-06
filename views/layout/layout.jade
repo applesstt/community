@@ -20,7 +20,7 @@ html
             span.icon-bar
           a#logo.navbar-brand(href='/')
             span 败
-            | 家党
+            | 家党#{ new Date() }
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.navbar-right.navbar-nav-apl
             if user
@@ -51,7 +51,7 @@ html
         button.close(data-dismiss="alert",aria-hidden="true") ×
         | #{(success && success.length > 0) ? success : error}
 
-    .container
+    #main.container
       block content
 
     footer.footer-apl
@@ -61,5 +61,11 @@ html
         a.footer-power(href='http://github.com/applesstt') applesstt
     script(src='http://cdn.staticfile.org/jquery/1.11.0/jquery.min.js')
     script(src='http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js')
+    script(src='http://cdn.staticfile.org/jquery.pjax/1.8.0/jquery.pjax.min.js')
+    script.
+      $(function() {
+        // error: $('a.pjax').pjax('#main', {fragment:'#main'})
+        //$(document).pjax('a.pjax-main', '#main', {fragment: '#main'});
+      });
     //put other js files in js_content
     block js_content

@@ -57,7 +57,7 @@ exports.toView = function(req, res) {
       req.flash('error', err);
       return res.redirect('/');
     }
-    res.render('article', {
+    res.renderPjax('article', {
       title: post.title,
       post: post,
       user: req.session.user,

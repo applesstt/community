@@ -7,15 +7,18 @@ exports.toHome = function(req, res) {
     if(err) {
       posts = [];
     }
-    res.render('index', {
-      title: '败家党',
-      user: req.session.user,
-      success: req.flash('success'),
-      error: req.flash('error'),
-      posts: posts,
-      page: page,
-      isFirst: page == 1,
-      isLast:page * pageSize >= count
+    Post.formShortByDocs(posts, function(err, docs) {
+      console.log(docs);
+      res.render('index', {
+        title: '败家党',
+        user: req.session.user,
+        success: req.flash('success'),
+        error: req.flash('error'),
+        posts: docs,
+        page: page,
+        isFirst: page == 1,
+        isLast:page * pageSize >= count
+      });
     });
   });
 };
