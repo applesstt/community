@@ -1,6 +1,6 @@
 - var titleEncode = encodeURIComponent(post.title)
 h1
-  a.post-title(href='/u/#{post.name}/#{post.time.day}/#{titleEncode}') #{post.title}
+  a.pjax-main.post-title(href='/u/#{post.name}/#{post.time.day}/#{titleEncode}') #{post.title}
 .row
   .col-md-6.text-left.post-short-info
     a(href='/u/#{post.name}')

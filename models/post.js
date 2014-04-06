@@ -1,4 +1,5 @@
 var mongodb = require('./db.js');
+var jsdom = require('jsdom');
 
 var Post = function(post) {
   this.name = post.name;
@@ -107,6 +108,28 @@ Post.getAllByPages = function(name, page, pageSize, callback) {
         });
       });
     });
+  });
+};
+
+Post.formShortByDocs = function(docs, callback) {
+  var _star = 0;
+  var _len = docs.length;
+  docs.forEach(function(item) {
+    jsdom.env(
+      item['post'],
+      ["../public/vendor/jquery/jquery-1.11.0.min.js"],
+      function (errors, window) {
+        if(errors) {
+          return callback(errors);
+        }
+        item['img'] = window.$('img').attr('src');
+        item['text'] = window.$(window.document).text();
+        _star++;
+        if(_star == _len) {
+          callback(null, docs);
+        }
+      }
+    );
   });
 };
 
