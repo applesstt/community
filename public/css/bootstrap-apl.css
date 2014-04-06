@@ -191,6 +191,22 @@ a.footer-power {
   font-size: 12px;
   line-height: 16px;
   text-align: center;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -moz-transition: all .5s;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+a.navbar-nav-user:hover .user-msg-alert {
+  transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
 }
 .aside-account-title {
   font-size: 20px;
@@ -204,6 +220,9 @@ a.footer-power {
   font-size: 14px;
   line-height: 14px;
 }
+.post-short-info > .label {
+  margin-left: 5px;
+}
 
 a.post-buy {
   display: block;
@@ -211,7 +230,7 @@ a.post-buy {
 }
 
 .aside-widget {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .aside-widget header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f6f5f5), to(#ebeaea));
@@ -252,7 +271,6 @@ a.post-buy {
 }
 .aside-user-info-box {
   border-top: 1px solid #ced5db;
-  border-bottom: 1px solid #ced5db;
   margin-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
