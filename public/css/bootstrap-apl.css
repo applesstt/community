@@ -345,3 +345,30 @@ a.post-buy {
   background: url(../img/badge/yinzhang.png) no-repeat 50% 50%;
   background-size: 70%;
 }
+.post-multy-normal {
+  display: none;
+}
+.post-multy-action {
+  margin-top: 10px;
+  display: block;
+}
+.post-short {
+  margin-top: 20px;
+  line-height: 26px;
+  max-height: 260px;
+}
+.post-short-right {
+  float: right;
+  width: 210px;
+  padding-left: 10px;
+}
+.post-short-right img {
+  width: 200px;
+  border: 1px solid #cccccc;
+  padding: 2px;
+  display: block;
+}
+.post-short-right .post-buy {
+  text-align: center;
+  padding-top: 5px;
+}

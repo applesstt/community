@@ -1,17 +1,4 @@
-- var titleEncode = encodeURIComponent(post.title)
-h1
-  a.pjax-main.post-title(href='/u/#{post.name}/#{post.time.day}/#{titleEncode}') #{post.title}
-.row
-  .col-md-6.text-left.post-short-info
-    a(href='/u/#{post.name}')
-      img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
-      |  #{post.name}
-    span.label.label-primary 晒物
-    - each tag in ['办公', 'OHTO']
-      span.label.label-success #{tag}
-  time.col-md-6.text-right.text-muted.post-time
-    .glyphicon.glyphicon-time
-    |  #{post.time.day}
+include post-title
 .post-content !{post.post}
 .post-buys
   a.post-buy.text-muted(href='javascript:{}')
