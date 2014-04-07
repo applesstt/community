@@ -8,7 +8,6 @@ exports.toHome = function(req, res) {
       posts = [];
     }
     Post.formShortByDocs(posts, function(err, docs) {
-      console.log(docs);
       res.render('index', {
         title: '败家党',
         user: req.session.user,

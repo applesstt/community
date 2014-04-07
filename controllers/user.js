@@ -15,15 +15,17 @@ exports.toUser = function(req, res) {
         req.flash('error', err);
         res.redirect('/');
       }
-      res.render('user', {
-        title: user.name,
-        posts: posts,
-        user: req.session.user,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString(),
-        page: page,
-        isFirst: page == 1,
-        isLast: page * pageSize >= count
+      Post.formShortByDocs(posts, function(err, docs) {
+        res.render('user', {
+          title: user.name,
+          posts: posts,
+          user: req.session.user,
+          success: req.flash('success').toString(),
+          error: req.flash('error').toString(),
+          page: page,
+          isFirst: page == 1,
+          isLast: page * pageSize >= count
+        });
       });
     });
   });
