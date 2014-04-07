@@ -1,5 +1,11 @@
+.top-alert {
+  margin-top: 20px;
+}
 .text-muted {
   color: #bbbbbb;
+}
+#main {
+  padding-top: 20px;
 }
 a:hover, a:focus {
   color: #55a773;
@@ -96,9 +102,14 @@ a.footer-power {
   margin-top: 40px;
   margin-bottom: 40px;
 }
+.post-wrap {
+  overflow: hidden;
+}
 .post-main, .post-aside {
   position: relative;
-  padding-top: 36px;
+  padding-top: 20px;
+  padding-bottom: 10000px;
+  margin-bottom: -10000px;
 }
 .post-main:before {
   border-left: 1px solid #ced5db;
@@ -356,6 +367,7 @@ a.post-buy {
   margin-top: 20px;
   line-height: 26px;
   max-height: 260px;
+  overflow: hidden;
 }
 .post-short-right {
   float: right;

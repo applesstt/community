@@ -46,7 +46,7 @@ html
         .glyphicon.glyphicon-leaf
         |  Embrace and Drive Change
     - if((success && success.length > 0) || (error && error.length > 0))
-      .container.alert.alert-info.alert-dismissable
+      .container.alert.alert-info.alert-dismissable.top-alert
         button.close(data-dismiss="alert",aria-hidden="true") ×
         | #{(success && success.length > 0) ? success : error}
 
