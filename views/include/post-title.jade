@@ -6,7 +6,8 @@ h1
     a(href='/u/#{post.name}')
       img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
       |  #{post.name}
-    span.label.label-primary 晒物
+    span.label.label-primary 爱好收藏
+    span.label.label-danger 炫富大赛
     - each tag in ['办公', 'OHTO']
       span.label.label-success #{tag}
   time.col-md-6.text-right.text-muted.post-time
