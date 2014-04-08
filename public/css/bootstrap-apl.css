@@ -49,7 +49,7 @@ a:hover, a:focus {
   -o-transform: rotate(0deg);
 }
 .navbar-apl {
-  background-color: #242b32;
+  background: #242b32 url(../img/header_icons.png) repeat-x 0 50%;
   color: #f8f8f9;
   padding-top: 30px;
   padding-bottom: 30px;
