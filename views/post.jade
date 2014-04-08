@@ -4,7 +4,14 @@ block css_content
 block content
   .row.post-wrap
     .col-md-8.post-main
-      form#post-form(method = 'post', enctype = 'multipart/form-data')
+      form#post-form(role='form', method = 'post', enctype = 'multipart/form-data')
+        .bs-callout.bs-callout-danger
+          h4 炫富大赛
+        .form-group
+          - each cate in [[1,'品质生活'],[2,'爱好收藏'],[3,'科技控']]
+            label.radio-inline
+              input(type='radio', name='cate-type', value='#{cate[0]}')
+              |  #{cate[1]}
         .form-group
           input.form-control(name='title', id='post_title', placeholder='标题')
         .form-group
@@ -31,7 +38,7 @@ block content
             section
               textarea(id = 'wysihtml5-editor', name = 'post', spellcheck = 'false', wrap = 'off', placeholder = '写内容...')
         .text-left
-          input#post-submit.btn.btn-primary.btn-lg(type = 'submit', value='发布')
+          input#post-submit.btn.btn-success.btn-lg(type = 'submit', value='发布')
     .col-md-4.post-aside
       include include/aside-user
 block js_content

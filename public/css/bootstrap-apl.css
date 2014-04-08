@@ -385,3 +385,16 @@ a.post-buy {
   text-align: center;
   padding-top: 5px;
 }
+
+.bs-callout {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+.bs-callout-danger {
+  background-color: #fdf7f7;
+  border-color: #d9534f;
+}
+.bs-callout h4 {
+  color: #d9534f;
+}
