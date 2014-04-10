@@ -59,9 +59,23 @@ html
               li
                 a(href='/reg') 注册
     .subheader
-      .container.inspired
-        .glyphicon.glyphicon-leaf
-        |  Embrace and Drive Change
+      .container.clearfix
+        .inspired
+          .glyphicon.glyphicon-leaf
+          |  Embrace and Drive Change
+        .search-box
+          script.
+            var search = function() {
+              s = document.getElementById('searchbox');
+              if (s.value != "") {
+                window.open('http://www.google.com/search?q=site:applesstt.com%20' + s.value, "_blank");
+              }
+              return false;
+            }
+          form(onsubmit='return search()')
+            button.search-btn(type='submit')
+              .glyphicon.glyphicon-search
+            input#searchbox.search-field(type='text', placeholder='Search')
     - if((success && success.length > 0) || (error && error.length > 0))
       .container.alert.alert-success.alert-dismissable.top-alert
         button.close(data-dismiss="alert",aria-hidden="true") ×
