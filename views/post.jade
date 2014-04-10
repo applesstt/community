@@ -30,9 +30,11 @@ block content
               a.btn.btn-success.btn-xs(data-wysihtml5-dialog-action = 'save') 确定
               a.btn.btn-default.btn-xs(data-wysihtml5-dialog-action = 'cancel') 取消
             #insertImage.bg-info.row(data-wysihtml5-dialog = 'insertImage', style = 'display: none;')
-              .col-md-4
-                input#upload-image(name='upload-image', type='file', value='上传图片')
-              .col-md-8
+              .col-md-3
+                .upload-image-wrap
+                  a.upload-image-btn.btn.btn-primary 上传本地图片
+                  input#upload-image(name='upload-image', type='file', value='上传图片')
+              .col-md-9
                 label
                   input#image_path.form-control(data-wysihtml5-dialog-field = 'src', value = 'http://')
                 a#insertImageSave.btn.btn-success.btn-xs(data-wysihtml5-dialog-action = 'save') 确定

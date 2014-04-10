@@ -398,3 +398,14 @@ a.post-buy {
 .bs-callout h4 {
   color: #d9534f;
 }
+
+.upload-image-wrap {
+  position: relative;
+}
+.upload-image-btn {}
+#upload-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}

@@ -12,6 +12,10 @@ editor.on("load", function() {
   }
 });
 
+$('.upload-image-btn').click(function() {
+  $('#upload-image').trigger('click');
+});
+
 $('#upload-image').change(function() {
   $('#post-form').ajaxSubmit({
     url: '/uploadImage',
