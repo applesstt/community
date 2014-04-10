@@ -7,7 +7,13 @@ var Post = require('../models/post.js'),
 exports.toPost = function(req, res) {
   res.render('post', {
     title: '发布',
+    post: {
+      title: '',
+      post: '',
+      day: ''
+    },
     user: req.session.user,
+    isNew: true,
     success: req.flash('success'),
     error: req.flash('error')
   });
@@ -62,6 +68,7 @@ exports.toUpdate = function(req, res) {
       title: '编辑',
       post: post,
       user: req.session.user,
+      isNew: false,
       success: req.flash('success').toString(),
       error: req.flash('error').toString()
     });
