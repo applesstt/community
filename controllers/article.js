@@ -58,7 +58,7 @@ exports.toUpdate = function(req, res) {
       req.flash('error', err);
       res.redirect('');
     }
-    res.render('edit', {
+    res.render('post', {
       title: '编辑',
       post: post,
       user: req.session.user,
