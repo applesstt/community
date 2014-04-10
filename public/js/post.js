@@ -6,10 +6,21 @@ var editor = new wysihtml5.Editor("wysihtml5-editor", {
 
 editor.on("load", function() {
   var composer = editor.composer,
-    h1 = editor.composer.element.querySelector("h1");
+      h1 = editor.composer.element.querySelector("h1");
   if (h1) {
     composer.selection.selectNode(h1);
   }
+
+  /*var _resize = function() {
+    var _height = editor.composer.element.scrollHeight + 20;
+    _height = _height > 300 ? _height : 300;
+    editor.composer.iframe.style.height = _height + "px";
+  }
+  setTimeout(_resize, 1000);
+  //动态修改编辑框高度
+  editor.composer.element.addEventListener("keyup", _resize);
+  editor.composer.element.addEventListener("blur", _resize);
+  editor.composer.element.addEventListener("focus", _resize);*/
 });
 
 $('.upload-image-btn').click(function() {
