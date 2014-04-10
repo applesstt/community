@@ -24,17 +24,19 @@ block content
                   - else
                     li.command(data-wysihtml5-command=command.command)
                 li.action(data-wysihtml5-action = 'change_view')
-            div(data-wysihtml5-dialog = 'createLink', style = 'display: none;')
-              label Link:
-                input(data-wysihtml5-dialog-field = 'href', value = 'http://')
-              a(data-wysihtml5-dialog-action = 'save') OK
-              a(data-wysihtml5-dialog-action = 'cancel') Cancel
-            div(data-wysihtml5-dialog = 'insertImage', style = 'display: none;')
-              input#upload-image(name='upload-image', type='file', value='上传图片')
-              lavel Image:
-                input#image_path(data-wysihtml5-dialog-field = 'src', value = 'http://')
-              a(data-wysihtml5-dialog-action = 'save') OK
-              a(data-wysihtml5-dialog-action = 'cancel') Cancel
+            .bg-info(data-wysihtml5-dialog = 'createLink', style = 'display: none;')
+              label
+                input.form-control(data-wysihtml5-dialog-field = 'href', value = 'http://')
+              a.btn.btn-success.btn-xs(data-wysihtml5-dialog-action = 'save') 确定
+              a.btn.btn-default.btn-xs(data-wysihtml5-dialog-action = 'cancel') 取消
+            #insertImage.bg-info.row(data-wysihtml5-dialog = 'insertImage', style = 'display: none;')
+              .col-md-4
+                input#upload-image(name='upload-image', type='file', value='上传图片')
+              .col-md-8
+                label
+                  input#image_path.form-control(data-wysihtml5-dialog-field = 'src', value = 'http://')
+                a#insertImageSave.btn.btn-success.btn-xs(data-wysihtml5-dialog-action = 'save') 确定
+                a.btn.btn-default.btn-xs(data-wysihtml5-dialog-action = 'cancel') 取消
             section
               textarea(id = 'wysihtml5-editor', name = 'post', spellcheck = 'false', wrap = 'off', placeholder = '写内容...')
         .text-left

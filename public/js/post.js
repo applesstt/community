@@ -21,6 +21,14 @@ $('#upload-image').change(function() {
       if(result) {
         var imagePath200 = 'http://' + location.host + '/' + result.base_path + '580_' + result.image;
         $('#image_path').val(imagePath200);
+        editor.currentView.element.focus();
+        editor.composer.commands.exec("insertImage", {
+          src: imagePath200
+        });
+        (new wysihtml5.toolbar.Dialog(
+          document.querySelector("[data-wysihtml5-command='insertImage']"),
+          document.querySelector("[data-wysihtml5-dialog='insertImage']")
+        )).hide();
       }
     }
   });

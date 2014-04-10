@@ -209,40 +209,37 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid #ccc;
   padding: 5px 10px;
-  background: #FFFBE0;
   position: absolute;
-  width: 810px;
+  width: 100%;
   text-align: center;
-  top: 45px;
+  top: 40px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+[data-wysihtml5-dialog] label {
+  margin-bottom: 0;
 }
 
 [data-wysihtml5-dialog] input {
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 3px;
   width: 300px;
 }
 
-[data-wysihtml5-dialog] input:focus {
-  outline: 0;
-  border: 1px solid #666;
+#upload-image {
+  width: 100%;
+  margin-top: 5px;
 }
+
+[data-wysihtml5-dialog] input:focus {}
 
 [data-wysihtml5-dialog-action] {
-  padding: 4px;
-  color: #fff;
-  cursor: pointer;
+  margin-left: 5px;
 }
 
-[data-wysihtml5-dialog-action="save"] {
-  background: #007200;
-}
+[data-wysihtml5-dialog-action="save"] {}
 
-[data-wysihtml5-dialog-action="cancel"] {
-  background: #999;
-}
+[data-wysihtml5-dialog-action="cancel"] {}
 
 section {
   width: 100%;
