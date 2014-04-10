@@ -110,7 +110,7 @@ a.footer-power {
 .post-main, .post-aside {
   position: relative;
   padding-top: 20px;
-  padding-bottom: 10000px;
+  padding-bottom: 10020px;
   margin-bottom: -10000px;
 }
 .post-main:before {
