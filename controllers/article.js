@@ -1,6 +1,7 @@
 var Post = require('../models/post.js'),
     fs = require('fs'),
     im = require('imagemagick'),
+    async = require('async'),
     Comment = require('../models/comment.js');
 
 exports.toPost = function(req, res) {
@@ -14,28 +15,9 @@ exports.toPost = function(req, res) {
 
 exports.doPost = function(req, res) {
   var user = req.session.user;
-  /*var image_name = req.files.image.name;
-  if(image_name !== '') {
-    image_name = (new Date()).getTime() + '_' + image_name;
-    var target_path = './public/upload/images/' + image_name;
-    var target_path_200 = './public/upload/images/' + '200_' + image_name;
-    fs.renameSync(req.files.image.path, target_path);
-    im.resize({
-      srcPath: target_path,
-      dstPath: target_path_200,
-      width: 200
-    }, function(err, stdout, stderr) {
-      if(err) {
-        console.log(err);
-      } else {
-        console.log('Resize ' + target_path + ' to 200px width image!');
-      }
-    })
-  }*/
   var post = new Post({
     name: user.name,
     title: req.body.title,
-    //image: image_name,
     post: req.body.post
   });
   post.save(function(err) {
@@ -145,7 +127,7 @@ exports.doComment = function(req, res) {
   })
 };
 
-var resizeImage = function(srcPath, dstPath, width) {
+var resizeImage = function(srcPath, dstPath, width, callback) {
   var imParams = {
     srcPath: srcPath,
     dstPath: dstPath,
@@ -154,9 +136,10 @@ var resizeImage = function(srcPath, dstPath, width) {
 
   im.resize(imParams, function(err, stdout, stderr) {
     if(err) {
-      console.log(err);
+      callback(err);
     } else {
       console.log('Resize ' + dstPath + ' to ' + width + 'px width image!');
+      callback(null, width);
     }
   });
 }
@@ -170,11 +153,18 @@ exports.doUploadImage = function(req, res) {
     var target_path_200 = './public/upload/images/' + '200_' + image_name;
     var target_path_580 = './public/upload/images/' + '580_' + image_name;
     fs.renameSync(req.files['upload-image'].path, target_path);
-    resizeImage(target_path, target_path_200, 200);
-    resizeImage(target_path, target_path_580, 580);
-    res.send({
-      base_path: base_path,
-      image: image_name
+    async.parallel([function(callback) {
+      resizeImage(target_path, target_path_200, 200, callback);
+    }, function(callback) {
+      resizeImage(target_path, target_path_580, 580, callback);
+    }], function(err, results) {
+      if(err) {
+        return console.log(err);
+      }
+      res.send({
+        base_path: base_path,
+        image: image_name
+      });
     });
   }
 };

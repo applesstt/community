@@ -14,6 +14,7 @@
     "imagemagick": "*",
     "nodemailer": "*",
     "jsdom": "*",
+    "async": "*",
     "express-pjax": ">= 0.0.1"
   },
   "devDependencies": {

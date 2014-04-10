@@ -19,11 +19,12 @@ $('#upload-image').change(function() {
     dataType: 'json',
     success: function(result) {
       if(result) {
-        var imagePath200 = 'http://' + location.host + '/' + result.base_path + '580_' + result.image;
-        $('#image_path').val(imagePath200);
+        var imagePath580 = 'http://' + location.host + result.base_path + '580_' + result.image;
+        $('#image_path').val(imagePath580);
         editor.currentView.element.focus();
+        editor.composer.commands.state('insertImage');
         editor.composer.commands.exec("insertImage", {
-          src: imagePath200
+          src: imagePath580
         });
         (new wysihtml5.toolbar.Dialog(
           document.querySelector("[data-wysihtml5-command='insertImage']"),
