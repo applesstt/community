@@ -5,6 +5,7 @@ exports.toReg = function(req, res) {
   res.render('reg', {
     title: '注册',
     user: req.session.user,
+    env: req.session.env,
     success: req.flash('success'),
     error: req.flash('error')
   });

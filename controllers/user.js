@@ -20,6 +20,7 @@ exports.toUser = function(req, res) {
           title: user.name,
           posts: posts,
           user: req.session.user,
+          env: req.session.env,
           success: req.flash('success').toString(),
           error: req.flash('error').toString(),
           page: page,

@@ -11,6 +11,7 @@ exports.toHome = function(req, res) {
       res.render('index', {
         title: '败家党',
         user: req.session.user,
+        env: req.session.env,
         success: req.flash('success'),
         error: req.flash('error'),
         posts: docs,

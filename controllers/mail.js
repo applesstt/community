@@ -4,6 +4,7 @@ exports.toMail = function(req, res) {
   res.render('mail', {
     title: '发送邮件',
     user: req.session.user,
+    env: req.session.env,
     success: req.flash('success'),
     error: req.flash('error')
   });

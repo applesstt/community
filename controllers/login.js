@@ -5,6 +5,7 @@ exports.toLogin = function(req, res) {
   res.render('login', {
     title: '登录',
     user: req.session.user,
+    env: req.session.env,
     success: req.flash('success'),
     error: req.flash('error')
   });

@@ -13,6 +13,7 @@ exports.toPost = function(req, res) {
       day: ''
     },
     user: req.session.user,
+    env: req.session.env,
     isNew: true,
     success: req.flash('success'),
     error: req.flash('error')
@@ -49,6 +50,7 @@ exports.toView = function(req, res) {
       title: post.title,
       post: post,
       user: req.session.user,
+      env: req.session.env,
       success: req.flash('success').toString(),
       error: req.flash('error').toString()
     });
@@ -68,6 +70,7 @@ exports.toUpdate = function(req, res) {
       title: '编辑',
       post: post,
       user: req.session.user,
+      env: req.session.env,
       isNew: false,
       success: req.flash('success').toString(),
       error: req.flash('error').toString()

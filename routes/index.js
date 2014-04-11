@@ -10,6 +10,11 @@ module.exports = function(app) {
 
   app.get('/demo1', home.toDemo1);
 
+  app.get('*', function(req, res, next) {
+    req.session.env = app.get('env');
+    next();
+  });
+
   app.get('/', home.toHome);
 
   app.all('/login*', auth.checkNotLogin);
