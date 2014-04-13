@@ -1,5 +1,9 @@
 var Common = (function() {
 
+  var _initToolTip = function() {
+    $('.tooltip-link').tooltip();
+  };
+
   var _initTogglePostMulti = function() {
     $('.post-multy-action').click(function() {
       var _wrapDom = $(this).parents('.post-multy');
@@ -22,6 +26,7 @@ var Common = (function() {
   };
 
   var init = function() {
+    _initToolTip();
     _initTogglePostMulti();
   };
 

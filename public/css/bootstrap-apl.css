@@ -235,22 +235,6 @@ a.footer-power {
   position: absolute;
   right: -4px;
   top: -4px;
-  transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -moz-transition: all .5s;
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
-}
-a.navbar-nav-user:hover .user-msg-alert {
-  transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -webkit-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
 }
 .aside-account-title {
   font-size: 20px;

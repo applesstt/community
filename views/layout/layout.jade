@@ -39,6 +39,10 @@ html
               a(href='javascript:{}')
                 .glyphicon.glyphicon-user
                 |  败家之星
+            li
+              a(href='/post')
+                .glyphicon.glyphicon-plus
+                |  分享
             if user
               li
                 a.navbar-nav-user(href='javascript:{}', title='#{user.name}')
@@ -46,13 +50,10 @@ html
                     img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
                     .user-msg-alert 1
               li
-                a(href='/post')
-                  .glyphicon.glyphicon-plus
-                  |  发布
+                a.tooltip-link(href='javascript:{}', data-toggle='tooltip',data-placement='bottom',title='设置')
+                  .glyphicon.glyphicon-cog
               li
-                a(href='/logout')
-                  .glyphicon.glyphicon-log-out
-                  |  退出
+                a.tooltip-link(href='/logout', data-toggle='tooltip',data-placement='bottom',title='退出'):.glyphicon.glyphicon-log-out
             else
               li
                 a(href='/login') 登录
