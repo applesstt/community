@@ -88,6 +88,9 @@ a:hover, a:focus {
   padding-top: 24px;
   float: left;
 }
+.footer-apl .inspired {
+  float: none;
+}
 a.footer-power {
   padding-left: 10px;
   color: #a5acb3;
