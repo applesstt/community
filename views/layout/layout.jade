@@ -39,11 +39,11 @@ html
               a(href='javascript:{}')
                 .glyphicon.glyphicon-user
                 |  败家之星
-            li
-              a(href='/post')
-                .glyphicon.glyphicon-plus
-                |  分享
             if user
+              li
+                a(href='/post')
+                  .glyphicon.glyphicon-plus
+                  |  分享
               li
                 a.navbar-nav-user(href='javascript:{}', title='#{user.name}')
                   .avatar-min-wrap
@@ -56,7 +56,9 @@ html
                 a.tooltip-link(href='/logout', data-toggle='tooltip',data-placement='bottom',title='退出'):.glyphicon.glyphicon-log-out
             else
               li
-                a(href='/login') 登录
+                a.tooltip-link(href='/login', data-toggle='tooltip',data-placement='bottom',title='登录')
+                  .glyphicon.glyphicon-log-out
+                  |  登录
               //li
                 a(href='/reg') 注册
     .subheader
