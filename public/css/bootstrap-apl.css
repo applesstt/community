@@ -77,10 +77,28 @@ a:hover, a:focus {
 }
 
 .subheader,
-.footer-apl {
+.footer-apl .inspired {
   background-color: #37424c;
   color: #7b8690;
   min-height: 64px;
+}
+.footer-about {
+  background-color: #242b32;
+  color: #b3b5b7;
+  font-size: 14px;
+  padding-top: 25px;
+  padding-bottom: 50px;
+}
+.footer-about h3 {
+  padding-bottom: 10px;
+  color: #ffffff;
+}
+.footer-text {
+
+}
+.footer-email {
+  color: #7b8690;
+  margin-top: 10px;
 }
 .inspired {
   font-size: 16px;
