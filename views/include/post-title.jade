@@ -15,3 +15,12 @@ h1
   time.col-md-6.text-right.text-muted.post-time
     .glyphicon.glyphicon-time
     |  #{post.time.day}
+- if(user && user.name == post.name)
+  .post-btns
+    a(href='/edit/#{post.name}/#{post.time.day}/#{titleEncode}')
+      span.glyphicon.glyphicon-edit
+      |  编辑
+    |&nbsp;&nbsp;
+    a(href='/remove/#{post.name}/#{post.time.day}/#{titleEncode}')
+      span.glyphicon.glyphicon-trash
+      |  删除

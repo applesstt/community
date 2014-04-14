@@ -4,12 +4,3 @@ include post-title
   a.post-buy.text-muted(href='javascript:{}')
     span.glyphicon.glyphicon-shopping-cart
     |  京东商城
-- if(user && user.name == post.name)
-  p.post-btns
-    a(href='/edit/#{post.name}/#{post.time.day}/#{titleEncode}')
-      span.glyphicon.glyphicon-edit
-      |  编辑
-    |&nbsp;&nbsp;
-    a(href='/remove/#{post.name}/#{post.time.day}/#{titleEncode}')
-      span.glyphicon.glyphicon-trash
-      |  删除
