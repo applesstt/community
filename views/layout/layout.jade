@@ -23,10 +23,7 @@ html
             | 家党
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.navbar-right.navbar-nav-apl
-            - var filters = []
-            - filters.push({key:'pzsh',icon:'glyphicon-glass',name:'品质生活'});
-            - filters.push({key:'ahsc',icon:'glyphicon-heart-empty',name:'爱好收藏'});
-            - filters.push({key:'kjk',icon:'glyphicon-phone',name:'科技控'});
+            include ../include/filters
             - each filterItem in filters
               - var selLi = filterItem.key == filter ? 'active' : ''
               li(class=selLi)

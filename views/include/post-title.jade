@@ -6,7 +6,11 @@ h1
     a(href='/u/#{post.name}')
       img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
       |  #{post.name}
-    span.label.label-success 爱好收藏
+    - if(post.filter)
+      include filters
+      - each filter in filters
+        - if(filter.key == post.filter)
+          span.label.label-success #{filter.name}
     span.label.label-danger 炫富大赛
   time.col-md-6.text-right.text-muted.post-time
     .glyphicon.glyphicon-time
