@@ -60,6 +60,9 @@ a:hover, a:focus {
 .navbar-nav-apl {
   margin-top: 20px;
 }
+.navbar-apl .navbar-nav-apl>li {
+  margin-right: 5px;
+}
 .navbar-apl .navbar-nav-apl>li>a {
   border-radius: 4px;
   color: #ffffff;
