@@ -8,9 +8,10 @@ block content
         .bs-callout.bs-callout-danger
           h4 炫富大赛
         .form-group
-          - each cate in [[1,'品质生活'],[2,'爱好收藏'],[3,'科技控']]
+          - each cate in [['pzsh','品质生活'],['ahsc','爱好收藏'],['kjk','科技控']]
+            - var checked = cate[0] === post.filter && true
             label.radio-inline
-              input(type='radio', name='cate-type', value='#{cate[0]}')
+              input(type='radio', checked=checked, name='filter', value='#{cate[0]}')
               |  #{cate[1]}
         .form-group
           - var inputDisabled = isNew ? false : 'disabled'
@@ -18,7 +19,7 @@ block content
         .form-group
           include include/post-wysihtml5
         .text-left
-          input#post-submit.btn.btn-success.btn-lg(type = 'submit', value='分享')
+          input#post-submit.btn.btn-success.btn-lg(type='submit', value='分享')
     .col-md-4.post-aside
       include include/aside-user
 block js_content

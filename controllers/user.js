@@ -10,7 +10,7 @@ exports.toUser = function(req, res) {
       req.flash('error', '用户不存在!');
       return res.redirect('/');
     }
-    Post.getAllByPages(user.name, page, pageSize, function(err, posts, count) {
+    Post.getAllByPages(user.name, page, pageSize, null, function(err, posts, count) {
       if(err) {
         req.flash('error', err);
         res.redirect('/');

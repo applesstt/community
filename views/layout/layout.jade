@@ -23,18 +23,16 @@ html
             | 家党
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.navbar-right.navbar-nav-apl
-            li
-              a(href='javascript:{}')
-                .glyphicon.glyphicon-glass
-                |  品质生活
-            li
-              a(href='javascript:{}')
-               .glyphicon.glyphicon-heart-empty
-               |  爱好收藏
-            li
-              a(href='javascript:{}')
-                .glyphicon.glyphicon-phone
-                |  科技控
+            - var filters = []
+            - filters.push({key:'pzsh',icon:'glyphicon-glass',name:'品质生活'});
+            - filters.push({key:'ahsc',icon:'glyphicon-heart-empty',name:'爱好收藏'});
+            - filters.push({key:'kjk',icon:'glyphicon-phone',name:'科技控'});
+            - each filterItem in filters
+              - var selLi = filterItem.key == filter ? 'active' : ''
+              li(class=selLi)
+                a(href='/?filter=#{filterItem.key}')
+                  .glyphicon(class=filterItem.icon)
+                  |  #{filterItem.name}
             li
               a(href='javascript:{}')
                 .glyphicon.glyphicon-user

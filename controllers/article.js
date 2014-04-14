@@ -25,6 +25,7 @@ exports.doPost = function(req, res) {
   var post = new Post({
     name: user.name,
     title: req.body.title,
+    filter: req.body.filter,
     post: req.body.post
   });
   post.save(function(err) {
@@ -83,7 +84,8 @@ exports.doUpdate = function(req, res) {
   var name = req.params.name;
   var day = req.params.day;
   var title = req.params.title;
-  Post.update(currentUser.name, day, title, req.body.post, function(err) {
+  var filter = req.body.filter;
+  Post.update(currentUser.name, day, title, filter, req.body.post, function(err) {
     var url = '/u/' + name + '/' + day + '/' + encodeURIComponent(title);
     if(err) {
       req.flash('error', err);

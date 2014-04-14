@@ -4,8 +4,8 @@ var jsdom = require('jsdom');
 var Post = function(post) {
   this.name = post.name;
   this.title = post.title;
+  this.filter = post.filter;
   this.post = post.post;
-  this.image = post.image;
   this.comments = []
 };
 
@@ -27,8 +27,8 @@ Post.prototype.save = function(callback) {
   var post = {
     name: this.name,
     title: this.title,
+    filter: this.filter,
     post: this.post,
-    image: this.image,
     time: time
   };
   mongodb.open(function(err, db) {
@@ -79,7 +79,7 @@ Post.getOne = function(name, day, title, callback) {
   })
 }
 
-Post.getAllByPages = function(name, page, pageSize, callback) {
+Post.getAllByPages = function(name, page, pageSize, filter, callback) {
   mongodb.open(function(err, db) {
     if(err) {
       return callback(err);
@@ -93,7 +93,13 @@ Post.getAllByPages = function(name, page, pageSize, callback) {
       if(name) {
         query.name = name;
       }
+      if(filter) {
+        query.filter = filter;
+      }
       collection.count(query, function(err, total) {
+        if(err) {
+          return callback(err);
+        }
         collection.find(query, {
           skip: (page - 1) * pageSize,
           limit: pageSize
@@ -114,6 +120,7 @@ Post.getAllByPages = function(name, page, pageSize, callback) {
 Post.formShortByDocs = function(docs, callback) {
   var _star = 0;
   var _len = docs.length;
+  if(_len === 0) return callback(null, docs);
   docs.forEach(function(item) {
     jsdom.env(
       item['post'],
@@ -158,7 +165,7 @@ Post.edit = function(name, day, title, callback) {
   })
 };
 
-Post.update = function(name, day, title, post, callback) {
+Post.update = function(name, day, title, filter, post, callback) {
   mongodb.open(function(err, db) {
     if(err) {
       return callback(err);
@@ -173,7 +180,7 @@ Post.update = function(name, day, title, post, callback) {
         'time.day': day,
         'title': title
       }, {
-        $set: {post: post}
+        $set: {post: post, filter: filter}
       }, function(err, result) {
         mongodb.close();
         if(err) {
