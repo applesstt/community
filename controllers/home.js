@@ -28,6 +28,17 @@ exports.toHome = function(req, res) {
   });
 };
 
+exports.toStar = function(req, res) {
+  res.render('star', {
+    title: '败家之星',
+    user: req.session.user,
+    env: req.session.env,
+    success: req.flash('success'),
+    error: req.flash('error'),
+    filter: ''
+  });
+};
+
 exports.toDemo1 = function(req, res) {
   res.render('demo1');
 };

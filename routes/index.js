@@ -17,6 +17,8 @@ module.exports = function(app) {
 
   app.get('/', home.toHome);
 
+  app.get('/star', home.toStar);
+
   app.all('/login*', auth.checkNotLogin);
   app.get('/login', login.toLogin);
   app.post('/login', login.doLogin);

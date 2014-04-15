@@ -1,9 +1,5 @@
-extends layout/layout
+extends layout/layout-user
 
-block content
-  .row.post-wrap
-    .col-md-8.post-main
-      include include/post
-      include comment
-    .col-md-4.post-aside
-      include include/aside-user
+block content-main
+    include include/post
+    include include/comment

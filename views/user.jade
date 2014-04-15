@@ -1,17 +1,4 @@
-extends layout/layout
+extends layout/layout-user
 
-block content
-  .row.post-wrap
-    .col-md-8.post-main
-      include include/posts
-    .col-md-4.post-aside
-      include include/aside-user-base
-      .aside-widget
-        header
-          h3 主题列表
-        .aside-widget-body
-          ul.aside-widget-list
-            li
-              a(href='javascript:{}') 无与伦比的机械之美
-            li
-              a(href='javascript:{}') 北美电器 AB-PN4810 面包机
+block content-main
+  include include/posts
