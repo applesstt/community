@@ -30,7 +30,8 @@ html
                 a(href='/?filter=#{filterItem.key}')
                   .glyphicon(class=filterItem.icon)
                   |  #{filterItem.name}
-            li
+            - var starSel = (filter && filter == 'star') ? 'active' : ''
+            li(class=starSel)
               a(href='/star')
                 .glyphicon.glyphicon-user
                 |  败家之星

@@ -35,7 +35,7 @@ exports.toStar = function(req, res) {
     env: req.session.env,
     success: req.flash('success'),
     error: req.flash('error'),
-    filter: ''
+    filter: 'star'
   });
 };
 

@@ -472,3 +472,11 @@ a.post-buy {
   margin-left: -4px;
   outline: none;
 }
+
+/* star page */
+.star-list {}
+.star-user {
+  width: 250px;
+  height: 220px;
+  float: left;
+}
