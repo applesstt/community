@@ -10,7 +10,7 @@ h1
       include filters
       - each filter in filters
         - if(filter.key == post.filter)
-          span.label.label-success #{filter.name}
+          a.label.label-success(href='/?filter=#{post.filter}') #{filter.name}
     span.label.label-danger 炫富大赛
   time.col-md-6.text-right.text-muted.post-time
     .glyphicon.glyphicon-time
