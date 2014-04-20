@@ -10,22 +10,24 @@ block content-main
       label.col-md-3.control-label 头像
       .col-md-9
         img.avatar-middle(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
+        | &nbsp;&nbsp;
+        a(href='javascript:{}') 修改
     .form-group
-      label.col-md-3.control-label 邮箱
+      label.col-md-3.control-label(for='person-email') 邮箱
       .col-md-9
-        input.form-control(value='#{user.email}')
+        input#person-email.form-control(name='email', value='#{user.email}')
     .form-group
-      label.col-md-3.control-label 城市
+      label.col-md-3.control-label(for='person-city') 城市
       .col-md-9
-        input.form-control(value='北京')
+        input#person-city.form-control(name='city', value='北京')
     .form-group
-      label.col-md-3.control-label 网址/微博/blog
+      label.col-md-3.control-label(for='person-website') 网址/微博/blog
       .col-md-9
-        input.form-control(value='')
+        input#person-website.form-control(name='website', value='')
     .form-group
-      label.col-md-3.control-label 一句话介绍
+      label.col-md-3.control-label(for='person-des') 一句话介绍
       .col-md-9
-        input.form-control(value='')
+        input#person-des.form-control(name='des', value='')
     .form-group
       .col-md-9.col-md-offset-3
         button.btn.btn-success(type='submit') 保存
