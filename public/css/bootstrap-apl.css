@@ -237,6 +237,11 @@ a.footer-power {
   height: 180px;
   border-radius: 50%;
 }
+.avatar-middle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
 .avatar-min-wrap {
   position: relative;
   width: 30px;

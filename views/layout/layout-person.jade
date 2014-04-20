@@ -5,13 +5,5 @@ block css_content
 
 block content
   .row.post-wrap
-    .col-md-3.post-aside
-      .person-aside
-        .person-aside-title
-          img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
-          |  #{user.name}
-        ul.person-aside-list
-          li
-            a(href='/person') 基本信息
-    .col-md-9.post-main
+    .col-md-6.col-md-offset-3
       block content-main
