@@ -56,3 +56,37 @@ User.get = function(name, callback) {
     })
 };
 
+User.getAllByPages = function(userName, page, pageSize, callback) {
+  mongodb.open(function(err, db) {
+    if(err) {
+      return callback(err);
+    }
+    db.collection('users', function(err, collection) {
+      if(err) {
+        mongodb.close();
+        return callback(err);
+      }
+      var query = {};
+      if(userName) {
+        query.name = userName;
+      }
+      collection.count(query, function(err, total) {
+        if(err) {
+          return callback(err);
+        }
+        collection.find(query, {
+          skip: (page - 1) * pageSize,
+          limit: pageSize
+        }).sort({
+            time: -1
+          }).toArray(function(err, docs) {
+            mongodb.close();
+            if(err) {
+              return callback(err);
+            }
+            callback(null, docs, total);
+          });
+      });
+    });
+  });
+};
