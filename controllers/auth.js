@@ -13,3 +13,11 @@ exports.checkNotLogin = function(req, res, next) {
   }
   next();
 };
+
+exports.checkSupperAdmin = function(req, res, next) {
+  if(req.session.user.name !== 'applesstt') {
+    req.flash('error', '您不是管理员！');
+    res.redirect('back');
+  }
+  next();
+};
