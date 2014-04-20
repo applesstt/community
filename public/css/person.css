@@ -1,0 +1,18 @@
+.person-aside {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.person-aside-title {
+  padding: 10px;
+}
+ul.person-aside-list {
+  padding: 0;
+}
+ul.person-aside-list li {
+  list-style: none;
+  padding: 10px 10px 0;
+  border-top: 1px solid #ccc;
+}
+ul.person-aside-list li:hover {
+  background-color: #fdfdfd;
+}
