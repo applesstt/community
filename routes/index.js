@@ -4,7 +4,8 @@ var auth = require('../controllers/auth.js'),
   regist = require('../controllers/regist.js'),
   article = require('../controllers/article.js'),
   mail = require('../controllers/mail.js'),
-  user = require('../controllers/user.js');
+  user = require('../controllers/user.js'),
+  person = require('../controllers/person.js');
 
 module.exports = function(app) {
 
@@ -48,6 +49,9 @@ module.exports = function(app) {
   app.all('/mail*', auth.checkLogin);
   app.get('/mail', mail.toMail);
   app.post('/mail', mail.doMail);
+
+  app.all('/person*', auth.checkLogin);
+  app.all('/person', person.toSet);
 
   app.all('/logout', auth.checkLogin);
   app.get('/logout', login.logout);
