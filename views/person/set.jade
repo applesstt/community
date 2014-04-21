@@ -1,7 +1,7 @@
 extends ../layout/layout-person
 
 block content-main
-  form.form-horizontal(role='form')
+  form.form-horizontal(role='form', method='post')
     .form-group
       label.col-md-3.control-label 姓名
       .col-md-9
@@ -19,15 +19,15 @@ block content-main
     .form-group
       label.col-md-3.control-label(for='person-city') 城市
       .col-md-9
-        input#person-city.form-control(name='city', value='北京')
+        input#person-city.form-control(name='city', value='#{user.city}')
     .form-group
       label.col-md-3.control-label(for='person-website') 网址/微博/blog
       .col-md-9
-        input#person-website.form-control(name='website', value='')
+        input#person-website.form-control(name='website', value='#{user.website}')
     .form-group
       label.col-md-3.control-label(for='person-des') 一句话介绍
       .col-md-9
-        input#person-des.form-control(name='des', value='')
+        input#person-des.form-control(name='des', value='#{user.des}')
     .form-group
       .col-md-9.col-md-offset-3
         button.btn.btn-success(type='submit') 保存

@@ -52,7 +52,8 @@ module.exports = function(app) {
   app.post('/mail', mail.doMail);
 
   app.all('/person*', auth.checkLogin);
-  app.all('/person', person.toSet);
+  app.get('/person', person.toSet);
+  app.post('/person', person.doSet);
 
   app.all('/admin*', auth.checkLogin);
   app.all('/admin*', auth.checkSupperAdmin);
