@@ -3,16 +3,19 @@
 .aside-user-info-box
   a.aside-user-info(href='javascript:{}')
     .glyphicon.glyphicon-user
-    |  李亚川Apple
-  .aside-user-info
-    .glyphicon.glyphicon-map-marker
-    |  北京，朝阳
+    |  #{author.name}
+  - if(author.city && author.city !== '')
+    .aside-user-info
+      .glyphicon.glyphicon-map-marker
+      |  #{author.city}
   .aside-user-info
     .glyphicon.glyphicon-envelope
-    |  applesstt@gmail.com
-  a.aside-user-info(href='javascript:{}')
-    .glyphicon.glyphicon-link
-    |  weibo.com/applesstt
-  .aside-user-info
-    .glyphicon.glyphicon-fire
-    |  轻度文艺风、中度科技粉、重度强迫症患者
+    |  #{author.email}
+  - if(author.website && author.website !== '')
+    a.aside-user-info(href='javascript:{}')
+      .glyphicon.glyphicon-link
+      |  #{author.website}
+  - if(author.des && author.des !== '')
+    .aside-user-info
+      .glyphicon.glyphicon-fire
+      |  #{author.des}

@@ -18,6 +18,7 @@ exports.toUser = function(req, res) {
       Post.formShortByDocs(posts, function(err, docs) {
         res.render('user', {
           title: user.name,
+          author: user,
           posts: posts,
           user: req.session.user,
           env: req.session.env,

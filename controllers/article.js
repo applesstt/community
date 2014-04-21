@@ -2,7 +2,8 @@ var Post = require('../models/post.js'),
     fs = require('fs'),
     im = require('imagemagick'),
     async = require('async'),
-    Comment = require('../models/comment.js');
+    Comment = require('../models/comment.js'),
+    User = require('../models/user.js');
 
 exports.toPost = function(req, res) {
   res.render('post', {
@@ -47,13 +48,20 @@ exports.toView = function(req, res) {
       req.flash('error', err);
       return res.redirect('/');
     }
-    res.renderPjax('article', {
-      title: post.title,
-      post: post,
-      user: req.session.user,
-      env: req.session.env,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString()
+    User.get(name, function(err, user) {
+      if(err) {
+        req.flash('error', err);
+        return res.redirect('/');
+      }
+      res.renderPjax('article', {
+        title: post.title,
+        author: user,
+        post: post,
+        user: req.session.user,
+        env: req.session.env,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+      });
     });
   });
 };
@@ -67,15 +75,22 @@ exports.toUpdate = function(req, res) {
       req.flash('error', err);
       res.redirect('');
     }
-    res.render('post', {
-      title: '编辑',
-      post: post,
-      user: req.session.user,
-      env: req.session.env,
-      isNew: false,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString()
-    });
+    User.get(req.session.user.name, function(err, user) {
+      if(err) {
+        req.flash('error', err);
+        res.redirect('');
+      }
+      res.render('post', {
+        title: '编辑',
+        author: user,
+        post: post,
+        user: req.session.user,
+        env: req.session.env,
+        isNew: false,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+      });
+    })
   });
 };
 
