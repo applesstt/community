@@ -13,6 +13,7 @@ exports.toPost = function(req, res) {
       post: '',
       day: ''
     },
+    author: req.session.user,
     user: req.session.user,
     env: req.session.env,
     isNew: true,
