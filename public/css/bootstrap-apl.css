@@ -485,3 +485,27 @@ a.post-buy {
   height: 220px;
   float: left;
 }
+
+/* upload and resize user img */
+.edit-user-img .avatar-middle {
+  display: block;
+  float: left;
+}
+.edit-user-img-btn {
+  display: block;
+  float: left;
+  margin-left: 20px;
+  margin-top: 30px;
+  position: relative;
+}
+.edit-user-img-btn a,
+.edit-user-img-btn input {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.edit-user-img-btn input {
+  width: 82px;
+  height: 34px;
+  display: block;
+}
