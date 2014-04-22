@@ -509,3 +509,6 @@ a.post-buy {
   height: 34px;
   display: block;
 }
+#resize-user-img-btn {
+  display: none;
+}
