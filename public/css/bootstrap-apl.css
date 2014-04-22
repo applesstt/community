@@ -512,7 +512,7 @@ a.post-buy {
 #resize-user-img-btn {
   display: none;
 }
-#image-200 {
+.image-200-wrap {
   width: 200px;
   margin-left: auto;
   margin-right: auto;

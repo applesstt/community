@@ -12,7 +12,10 @@ var PersonSet = (function() {
         success: function(result) {
           if(result) {
             var imagePath200 = 'http://' + location.host + result.base_path + '200_' + result.image;
-            $('#image-200').attr('src', imagePath200);
+            $('#image-200').attr('src', imagePath200).Jcrop({
+              aspectRatio: 1,
+              setSelect: [10,0,180,180]
+            });
             $('#resize-user-img-btn').trigger('click');
           }
         }
