@@ -186,9 +186,7 @@ exports.doUploadImage = function(req, res) {
     }, function(callback) {
       resizeImage(target_path, target_path_580, 580, callback);
     }], function(err, results) {
-      if(err) {
-        return console.log(err);
-      }
+      if(err) return console.log(err);
       res.send({
         base_path: base_path,
         image: image_name
@@ -196,3 +194,21 @@ exports.doUploadImage = function(req, res) {
     });
   }
 };
+
+exports.doCropImage = function(req, res) {
+  var root = './public';
+  var srcImgPath = req.body.srcImgPath;
+  var srcImgName = req.body.srcImgName;
+  var coords = req.body.coords;
+  //convert rose: -crop 40x30+40+30  crop_br.gif
+  var args = [root + srcImgPath + srcImgName, '-crop', coords,
+    root + srcImgPath + 'account_' + srcImgName];
+  im.convert(args, function(err) {
+    if(err) return console.log(err);
+    console.log('Crop account img path: ' + root + srcImgPath + 'account_' + srcImgName);
+    res.send({
+      base_path: srcImgPath,
+      image_name: 'account_' + srcImgName
+    });
+  });
+}

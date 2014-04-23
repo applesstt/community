@@ -11,10 +11,12 @@ exports.toSet = function(req, res) {
 };
 
 exports.doSet = function(req, res) {
+  var img = req.body.img;
   var city = req.body.city;
   var website = req.body.website;
   var des = req.body.des;
   var user = req.session.user;
+  user.img = img;
   user.city = city;
   user.website = website;
   user.des = des;

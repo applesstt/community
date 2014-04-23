@@ -8,7 +8,8 @@ block content-main
       input.form-control(disabled=true, value='#{user.name}')
     .form-group
       .edit-user-img
-        img.avatar-middle(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
+        img#user-avatar-show.avatar-middle(src='#{user.img}')
+        input#user-avatar(type='hidden', name='img', value='#{user.img}')
         .edit-user-img-btn
           input(type='file', name='upload-image')
           a.btn.btn-primary(href='javascript:{}') 选择头像
@@ -24,7 +25,7 @@ block content-main
                 img#image-200(src='/img/empty.gif')
             .modal-footer
               button.btn.btn-default(type='button', data-dismiss='modal') 关闭
-              button.btn.btn-primary(type='button') 保存
+              button#crop-image.btn.btn-primary(type='button') 保存
     .form-group
       input#person-email.form-control(name='email', value='#{user.email}', placeholder='邮箱')
     .form-group

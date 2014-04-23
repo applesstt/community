@@ -36,6 +36,9 @@ module.exports = function(app) {
   app.post('/uploadImage', auth.checkLogin);
   app.post('/uploadImage', article.doUploadImage);
 
+  app.post('/cropImage', auth.checkLogin);
+  app.post('/cropImage', article.doCropImage);
+
   app.get('/u/:name', user.toUser);
   app.get('/u/:name/:day/:title', article.toView);
   app.post('/u/:name/:day/:title', article.doComment);

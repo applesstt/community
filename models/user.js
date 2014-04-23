@@ -5,6 +5,7 @@ var resetUser = function(user) {
   user.city = user.city || '';
   user.website = user.website || '';
   user.des = user.des || '';
+  user.img = user.img || '/img/wx_logo.png';
   return user;
 };
 
@@ -13,6 +14,7 @@ var User = function(user) {
   this.name = user.name;
   this.password = user.password;
   this.email = user.email;
+  this.img = user.img;
   this.city = user.city;
   this.website = user.website;
   this.des = user.des;
