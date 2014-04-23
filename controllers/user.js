@@ -1,4 +1,5 @@
 var User = require('../models/user.js'),
+    fs = require('fs'),
     Post = require('../models/post.js');
 
 exports.toUser = function(req, res) {
@@ -31,4 +32,11 @@ exports.toUser = function(req, res) {
       });
     });
   });
+};
+
+exports.getAvatar = function(req, res) {
+  var name = req.params.name;
+  var img = fs.readFileSync('./public/avatar/' + name + '.png');
+  res.writeHead(200, {'Content-Type': 'image/png' });
+  res.end(img, 'binary');
 };

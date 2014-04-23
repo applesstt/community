@@ -202,7 +202,7 @@ exports.doCropImage = function(req, res) {
   var srcImgName = req.body.srcImgName;
   var coords = req.body.coords;
   var root = './public';
-  var imgName = userName + '.jpg';
+  var imgName = userName + '.png';
   //convert rose: -crop 40x30+40+30  crop_br.gif
   var args = [root + srcImgPath + srcImgName, '-crop', coords,
     root + avatarPath + imgName];
@@ -211,7 +211,7 @@ exports.doCropImage = function(req, res) {
     console.log('Crop account img path: ' + root + avatarPath + userName);
     res.send({
       base_path: avatarPath,
-      image_name: imgName
+      image_name: userName
     });
   });
 }

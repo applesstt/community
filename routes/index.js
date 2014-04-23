@@ -43,6 +43,8 @@ module.exports = function(app) {
   app.get('/u/:name/:day/:title', article.toView);
   app.post('/u/:name/:day/:title', article.doComment);
 
+  app.get('/avatar/:name', user.getAvatar);
+
   app.all('/edit/:name/:day/:title', auth.checkLogin);
   app.get('/edit/:name/:day/:title', article.toUpdate);
   app.post('/edit/:name/:day/:title', article.doUpdate);
