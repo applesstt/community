@@ -4,7 +4,7 @@ h1
 .row
   .col-md-6.text-left.post-short-info
     a(href='/u/#{post.name}')
-      img.avatar-min(src='http://tp2.sinaimg.cn/1177291417/180/5654264661/1')
+      img.avatar-min(src='/avatar/#{post.name}.jpg')
       |  #{post.name}
     - if(post.filter)
       include filters

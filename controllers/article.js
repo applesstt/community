@@ -196,19 +196,22 @@ exports.doUploadImage = function(req, res) {
 };
 
 exports.doCropImage = function(req, res) {
-  var root = './public';
+  var userName = req.session.user.name;
+  var avatarPath = '/avatar/';
   var srcImgPath = req.body.srcImgPath;
   var srcImgName = req.body.srcImgName;
   var coords = req.body.coords;
+  var root = './public';
+  var imgName = userName + '.jpg';
   //convert rose: -crop 40x30+40+30  crop_br.gif
   var args = [root + srcImgPath + srcImgName, '-crop', coords,
-    root + srcImgPath + 'account_' + srcImgName];
+    root + avatarPath + imgName];
   im.convert(args, function(err) {
     if(err) return console.log(err);
-    console.log('Crop account img path: ' + root + srcImgPath + 'account_' + srcImgName);
+    console.log('Crop account img path: ' + root + avatarPath + userName);
     res.send({
-      base_path: srcImgPath,
-      image_name: 'account_' + srcImgName
+      base_path: avatarPath,
+      image_name: imgName
     });
   });
 }

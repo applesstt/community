@@ -1,4 +1,5 @@
 node_modules/
 public/upload/
+public/avatar/
 .DS_Store
 .idea/

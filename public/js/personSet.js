@@ -48,7 +48,7 @@ var PersonSet = (function() {
           var _avatarPath = 'http://' + location.host + result.base_path + result.image_name;
           $('#resize-user-img-dialog').modal('hide');
           $('#user-avatar-show').attr('src', _avatarPath);
-          $('#user-avatar').val(_avatarPath);
+          $('#user-avatar').val(result.base_path + result.image_name);
         }
       })
     });
