@@ -34,9 +34,20 @@ exports.toUser = function(req, res) {
   });
 };
 
+var _sendImg = function(req, res, file, type) {
+  res.writeHead(200, {'Content-Type': 'image/' + type });
+  res.end(file, 'binary');
+};
+
+var _defaultAvatar = './public/img/wx_logo.png';
+
 exports.getAvatar = function(req, res) {
-  var name = req.params.name;
-  var img = fs.readFileSync('./public/avatar/' + name + '.png');
-  res.writeHead(200, {'Content-Type': 'image/png' });
-  res.end(img, 'binary');
+  fs.readFile('./public/avatar/' + req.params.name + '.png', function(err, file) {
+    if(err) {
+      return fs.readFile(_defaultAvatar, function(err, file) {
+        _sendImg(req, res, file, 'png');
+      })
+    }
+    _sendImg(req, res, file, 'png');
+  });
 };
