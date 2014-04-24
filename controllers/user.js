@@ -42,12 +42,11 @@ var _sendImg = function(req, res, file, type) {
 var _defaultAvatar = './public/img/wx_logo.png';
 
 exports.getAvatar = function(req, res) {
-  fs.readFile('./public/avatar/' + req.params.name + '.png', function(err, file) {
-    if(err) {
-      return fs.readFile(_defaultAvatar, function(err, file) {
-        _sendImg(req, res, file, 'png');
-      })
-    }
-    _sendImg(req, res, file, 'png');
+  var readStream = fs.createReadStream('./public/avatar/' + req.params.name + '.png');
+  readStream.on('open', function() {
+    readStream.pipe(res);
+  });
+  readStream.on('error', function() {
+    fs.createReadStream(_defaultAvatar).pipe(res);
   });
 };
