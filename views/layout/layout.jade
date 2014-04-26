@@ -119,7 +119,7 @@ html
       if user
         input#analytics-user-id(type='hidden', value='#{user.name}')
         script.
-          var analyticsUserId = $('#analytics-uesr-id').val();
+          var analyticsUserId = $('#analytics-user-id').val();
           ga('create', 'UA-49935671-1', {userId: analyticsUserId});
       else
         script.
