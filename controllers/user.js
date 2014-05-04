@@ -1,5 +1,6 @@
 var User = require('../models/user.js'),
     fs = require('fs'),
+    send = require('send'),
     Post = require('../models/post.js');
 
 exports.toUser = function(req, res) {
@@ -34,19 +35,12 @@ exports.toUser = function(req, res) {
   });
 };
 
-var _sendImg = function(req, res, file, type) {
-  res.writeHead(200, {'Content-Type': 'image/' + type });
-  res.end(file, 'binary');
-};
-
 var _defaultAvatar = './public/img/wx_logo.png';
 
 exports.getAvatar = function(req, res) {
-  var readStream = fs.createReadStream('./public/avatar/' + req.params.name + '.png');
-  readStream.on('open', function() {
-    readStream.pipe(res);
-  });
-  readStream.on('error', function() {
-    fs.createReadStream(_defaultAvatar).pipe(res);
-  });
+  send(req, './public/avatar/' + req.params.name + '.png')
+    .on('error', function() {
+      send(req, _defaultAvatar).pipe(res);
+    })
+    .pipe(res);
 };
