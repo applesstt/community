@@ -118,7 +118,7 @@ html
         input#analytics-user-id(type='hidden', value='#{user.name}')
         script.
           var analyticsUserId = $('#analytics-user-id').val();
-          _gaq.push(['_setCustomVar', 1, 'UserId', '\'' + analyticsUserId + '\'', 2]);
+          _gaq.push(['_setCustomVar', 1, 'UserId', analyticsUserId, 2]);
       script.
         _gaq.push(['_trackPageview']);
         (function() {
